@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K1 ▸ PAPER</title>
+<link rel="stylesheet" href="/assets/terminal.css">
+<script src="/config.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <span class="brand">K1 ▸ PAPER TRADING</span>
+  <span id="conn-dot" class="conn-dot"></span>
+  <span id="conn-label" class="micro conn-label">CONN</span>
+  <span class="flex-sp"></span>
+  <span id="utc-clock" class="clock"></span>
+  <span id="user-email" class="micro"></span>
+  <a class="btn" href="/">← TERMINAL</a>
+  <button id="signout" class="btn warn">SIGN OUT</button>
+</header>
+<main class="fill">
+  <div class="stats" style="flex:0 0 auto;margin:1px">
+    <div class="stat"><div class="k">TRADES</div><div class="v" id="s-trades">—</div></div>
+    <div class="stat"><div class="k">WINRATE</div><div class="v cy" id="s-win">—</div></div>
+    <div class="stat"><div class="k">AVG PNL</div><div class="v" id="s-avg">—</div></div>
+    <div class="stat"><div class="k">REALIZED PNL</div><div class="v" id="s-pnl">—</div></div>
+    <div class="stat"><div class="k">UNREALIZED</div><div class="v" id="s-unr">—</div></div>
+    <div class="stat"><div class="k">TOTAL FEES</div><div class="v amb" id="s-fees">—</div></div>
+    <div class="stat"><div class="k">MAX DD</div><div class="v down" id="s-dd">—</div></div>
+    <div class="stat"><div class="k">OPEN</div><div class="v cy" id="s-open">—</div></div>
+  </div>
+  <div class="panel" style="flex:0 0 30%;border:0;border-bottom:1px solid var(--border)">
+    <div class="panel-h"><span class="panel-t">CUMULATIVE PNL</span><span class="flex-sp"></span><span id="syms" class="row" style="flex-wrap:wrap"></span></div>
+    <div class="grow" style="position:relative;min-height:0">
+      <canvas id="curve" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="scroll">
+      <table class="t" id="closed">
+        <thead><tr>
+          <th>EXIT UTC</th><th>SYMBOL</th><th>SIDE</th><th class="num">QTY</th>
+          <th class="num">ENTRY</th><th class="num">EXIT</th><th class="num">PNL</th>
+          <th class="num">FEES</th><th class="num">DUR</th><th>REASON</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="empty" id="closed-empty">NO CLOSED TRADES</div>
+    </div>
+    <div class="scroll">
+      <table class="t" id="open">
+        <thead><tr>
+          <th>SYMBOL</th><th>SIDE</th><th class="num">QTY</th><th class="num">ENTRY</th>
+          <th class="num">MARK</th><th class="num">UNREAL</th><th class="num">BARS</th>
+          <th class="num">MAE</th><th class="num">MFE</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="empty" id="open-empty">NO OPEN POSITIONS</div>
+    </div>
+  </div>
+</main>
+<script type="module" src="/assets/monitor-paper.js"></script>
+</body>
+</html>

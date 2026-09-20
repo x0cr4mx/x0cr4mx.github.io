@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K1 ▸ GEO</title>
+<link rel="stylesheet" href="/assets/terminal.css">
+<script src="/config.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <span class="brand">K1 ▸ GEOPOLITICAL GLOBE</span>
+  <span id="conn-dot" class="conn-dot"></span>
+  <span id="conn-label" class="micro conn-label">CONN</span>
+  <span class="flex-sp"></span>
+  <span id="utc-clock" class="clock"></span>
+  <span id="user-email" class="micro"></span>
+  <a class="btn" href="/">← TERMINAL</a>
+  <button id="signout" class="btn warn">SIGN OUT</button>
+</header>
+<iframe src="/world/" title="K1 World"
+  style="position:fixed;inset:32px 0 0;width:100%;height:calc(100% - 32px);border:0"></iframe>
+<script type="module" src="/assets/monitor-geo.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K1 ▸ MARKETS</title>
+<link rel="stylesheet" href="/assets/terminal.css">
+<script src="/config.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <span class="brand">K1 ▸ MARKETS</span>
+  <span id="conn-dot" class="conn-dot"></span>
+  <span id="conn-label" class="micro conn-label">CONN</span>
+  <span class="flex-sp"></span>
+  <span id="utc-clock" class="clock"></span>
+  <span id="user-email" class="micro"></span>
+  <a class="btn" href="/">← TERMINAL</a>
+  <button id="signout" class="btn warn">SIGN OUT</button>
+</header>
+<main class="fill">
+  <div class="chart-grid" id="grid"></div>
+  <div class="strip" id="anoms">
+    <span class="micro">ANOMALIES ▸</span>
+    <span class="micro dim">NONE</span>
+  </div>
+</main>
+<script type="module" src="/assets/monitor-markets.js"></script>
+</body>
+</html>

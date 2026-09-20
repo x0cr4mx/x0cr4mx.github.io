@@ -1,0 +1,1982 @@
+{
+"AFG": {
+"centroid": [
+67.691,
+34.804
+],
+"fips": "AF",
+"gdeltName": "Afghanistan",
+"geojsonName": "Afghanistan",
+"name": "Afghanistan",
+"region": "Asia"
+},
+"AGO": {
+"centroid": [
+17.44,
+-10.935
+],
+"fips": "AO",
+"gdeltName": "Angola",
+"geojsonName": "Angola",
+"name": "Angola",
+"region": "Africa"
+},
+"ALB": {
+"centroid": [
+20.11,
+41.273
+],
+"fips": "AL",
+"gdeltName": "Albania",
+"geojsonName": "Albania",
+"name": "Albania",
+"region": "Europe"
+},
+"ARE": {
+"centroid": [
+54.243,
+24.195
+],
+"fips": "AE",
+"gdeltName": "United Arab Emirates",
+"geojsonName": "United Arab Emirates",
+"name": "United Arab Emirates",
+"region": "Middle East"
+},
+"ARG": {
+"centroid": [
+-65.152,
+-36.943
+],
+"fips": "AR",
+"gdeltName": "Argentina",
+"geojsonName": "Argentina",
+"name": "Argentina",
+"region": "Americas"
+},
+"ARM": {
+"centroid": [
+45.164,
+40.062
+],
+"fips": "AM",
+"gdeltName": "Armenia",
+"geojsonName": "Armenia",
+"name": "Armenia",
+"region": "Asia"
+},
+"ATA": {
+"centroid": [
+-2.818,
+-72.905
+],
+"fips": "AY",
+"gdeltName": "Antarctica",
+"geojsonName": "Antarctica",
+"name": "Antarctica",
+"region": "Other"
+},
+"ATF": {
+"centroid": [
+69.461,
+-49.119
+],
+"fips": "FS",
+"gdeltName": "French Southern and Antarctic Lands",
+"geojsonName": "French Southern and Antarctic Lands",
+"name": "French Southern and Antarctic Lands",
+"region": "Other"
+},
+"AUS": {
+"centroid": [
+133.324,
+-23.722
+],
+"fips": "AS",
+"gdeltName": "Australia",
+"geojsonName": "Australia",
+"name": "Australia",
+"region": "Oceania"
+},
+"AUT": {
+"centroid": [
+13.485,
+47.645
+],
+"fips": "AU",
+"gdeltName": "Austria",
+"geojsonName": "Austria",
+"name": "Austria",
+"region": "Europe"
+},
+"AZE": {
+"centroid": [
+47.433,
+40.355
+],
+"fips": "AJ",
+"gdeltName": "Azerbaijan",
+"geojsonName": "Azerbaijan",
+"name": "Azerbaijan",
+"region": "Asia"
+},
+"BDI": {
+"centroid": [
+29.955,
+-3.394
+],
+"fips": "BY",
+"gdeltName": "Burundi",
+"geojsonName": "Burundi",
+"name": "Burundi",
+"region": "Africa"
+},
+"BEL": {
+"centroid": [
+4.392,
+50.668
+],
+"fips": "BE",
+"gdeltName": "Belgium",
+"geojsonName": "Belgium",
+"name": "Belgium",
+"region": "Europe"
+},
+"BEN": {
+"centroid": [
+2.327,
+9.808
+],
+"fips": "BN",
+"gdeltName": "Benin",
+"geojsonName": "Benin",
+"name": "Benin",
+"region": "Africa"
+},
+"BFA": {
+"centroid": [
+-1.85,
+12.093
+],
+"fips": "UV",
+"gdeltName": "Burkina Faso",
+"geojsonName": "Burkina Faso",
+"name": "Burkina Faso",
+"region": "Africa"
+},
+"BGD": {
+"centroid": [
+90.611,
+23.399
+],
+"fips": "BG",
+"gdeltName": "Bangladesh",
+"geojsonName": "Bangladesh",
+"name": "Bangladesh",
+"region": "Asia"
+},
+"BGR": {
+"centroid": [
+24.687,
+42.894
+],
+"fips": "BU",
+"gdeltName": "Bulgaria",
+"geojsonName": "Bulgaria",
+"name": "Bulgaria",
+"region": "Europe"
+},
+"BHS": {
+"centroid": [
+-77.864,
+24.351
+],
+"fips": "BF",
+"gdeltName": "Bahamas",
+"geojsonName": "The Bahamas",
+"name": "The Bahamas",
+"region": "Americas"
+},
+"BIH": {
+"centroid": [
+17.892,
+44.255
+],
+"fips": "BK",
+"gdeltName": "Bosnia-Herzegovina",
+"geojsonName": "Bosnia and Herzegovina",
+"name": "Bosnia and Herzegovina",
+"region": "Europe"
+},
+"BLR": {
+"centroid": [
+28.114,
+53.325
+],
+"fips": "BO",
+"gdeltName": "Belarus",
+"geojsonName": "Belarus",
+"name": "Belarus",
+"region": "Europe"
+},
+"BLZ": {
+"centroid": [
+-88.63,
+17.417
+],
+"fips": "BH",
+"gdeltName": "Belize",
+"geojsonName": "Belize",
+"name": "Belize",
+"region": "Americas"
+},
+"BMU": {
+"centroid": [
+-64.77,
+32.313
+],
+"fips": "BD",
+"gdeltName": "Bermuda",
+"geojsonName": "Bermuda",
+"name": "Bermuda",
+"region": "Americas"
+},
+"BOL": {
+"centroid": [
+-64.019,
+-16.521
+],
+"fips": "BL",
+"gdeltName": "Bolivia",
+"geojsonName": "Bolivia",
+"name": "Bolivia",
+"region": "Americas"
+},
+"BRA": {
+"centroid": [
+-56.947,
+-9.639
+],
+"fips": "BR",
+"gdeltName": "Brazil",
+"geojsonName": "Brazil",
+"name": "Brazil",
+"region": "Americas"
+},
+"BRN": {
+"centroid": [
+114.843,
+4.628
+],
+"fips": "BX",
+"gdeltName": "Brunei",
+"geojsonName": "Brunei",
+"name": "Brunei",
+"region": "Asia"
+},
+"BTN": {
+"centroid": [
+90.615,
+27.468
+],
+"fips": "BT",
+"gdeltName": "Bhutan",
+"geojsonName": "Bhutan",
+"name": "Bhutan",
+"region": "Asia"
+},
+"BWA": {
+"centroid": [
+24.377,
+-22.388
+],
+"fips": "BC",
+"gdeltName": "Botswana",
+"geojsonName": "Botswana",
+"name": "Botswana",
+"region": "Africa"
+},
+"CAF": {
+"centroid": [
+20.508,
+6.33
+],
+"fips": "CT",
+"gdeltName": "Central African Republic",
+"geojsonName": "Central African Republic",
+"name": "Central African Republic",
+"region": "Africa"
+},
+"CAN": {
+"centroid": [
+-90.624,
+56.478
+],
+"fips": "CA",
+"gdeltName": "Canada",
+"geojsonName": "Canada",
+"name": "Canada",
+"region": "Americas"
+},
+"CHE": {
+"centroid": [
+8.307,
+46.797
+],
+"fips": "SZ",
+"gdeltName": "Switzerland",
+"geojsonName": "Switzerland",
+"name": "Switzerland",
+"region": "Europe"
+},
+"CHL": {
+"centroid": [
+-71.434,
+-38.157
+],
+"fips": "CI",
+"gdeltName": "Chile",
+"geojsonName": "Chile",
+"name": "Chile",
+"region": "Americas"
+},
+"CHN": {
+"centroid": [
+105.874,
+37.339
+],
+"fips": "CH",
+"gdeltName": "China",
+"geojsonName": "China",
+"name": "China",
+"region": "Asia"
+},
+"CIV": {
+"centroid": [
+-6.233,
+7.831
+],
+"fips": "IV",
+"gdeltName": "Ivory Coast",
+"geojsonName": "Ivory Coast",
+"name": "Ivory Coast",
+"region": "Africa"
+},
+"CMR": {
+"centroid": [
+13.145,
+6.733
+],
+"fips": "CM",
+"gdeltName": "Cameroon",
+"geojsonName": "Cameroon",
+"name": "Cameroon",
+"region": "Africa"
+},
+"COD": {
+"centroid": [
+23.014,
+-3.771
+],
+"fips": "CG",
+"gdeltName": "Democratic Republic of the Congo",
+"geojsonName": "Democratic Republic of the Congo",
+"name": "DR Congo",
+"region": "Africa"
+},
+"COG": {
+"centroid": [
+14.816,
+-1.089
+],
+"fips": "CF",
+"gdeltName": "Republic of the Congo",
+"geojsonName": "Republic of the Congo",
+"name": "Congo",
+"region": "Africa"
+},
+"COL": {
+"centroid": [
+-72.738,
+4.477
+],
+"fips": "CO",
+"gdeltName": "Colombia",
+"geojsonName": "Colombia",
+"name": "Colombia",
+"region": "Americas"
+},
+"CRI": {
+"centroid": [
+-84.173,
+9.785
+],
+"fips": "CS",
+"gdeltName": "Costa Rica",
+"geojsonName": "Costa Rica",
+"name": "Costa Rica",
+"region": "Americas"
+},
+"CUB": {
+"centroid": [
+-79.733,
+21.723
+],
+"fips": "CU",
+"gdeltName": "Cuba",
+"geojsonName": "Cuba",
+"name": "Cuba",
+"region": "Americas"
+},
+"CYP": {
+"centroid": [
+33.327,
+35.019
+],
+"fips": "CY",
+"gdeltName": "Cyprus",
+"geojsonName": "Cyprus",
+"name": "Cyprus",
+"region": "Europe"
+},
+"CZE": {
+"centroid": [
+15.904,
+49.707
+],
+"fips": "EZ",
+"gdeltName": "Czechia",
+"geojsonName": "Czech Republic",
+"name": "Czechia",
+"region": "Europe"
+},
+"DEU": {
+"centroid": [
+10.619,
+51.066
+],
+"fips": "GM",
+"gdeltName": "Germany",
+"geojsonName": "Germany",
+"name": "Germany",
+"region": "Europe"
+},
+"DJI": {
+"centroid": [
+42.571,
+11.811
+],
+"fips": "DJ",
+"gdeltName": "Djibouti",
+"geojsonName": "Djibouti",
+"name": "Djibouti",
+"region": "Africa"
+},
+"DNK": {
+"centroid": [
+9.678,
+56.36
+],
+"fips": "DA",
+"gdeltName": "Denmark",
+"geojsonName": "Denmark",
+"name": "Denmark",
+"region": "Europe"
+},
+"DOM": {
+"centroid": [
+-70.494,
+18.79
+],
+"fips": "DR",
+"gdeltName": "Dominican Republic",
+"geojsonName": "Dominican Republic",
+"name": "Dominican Republic",
+"region": "Americas"
+},
+"DZA": {
+"centroid": [
+3.35,
+29.602
+],
+"fips": "AG",
+"gdeltName": "Algeria",
+"geojsonName": "Algeria",
+"name": "Algeria",
+"region": "Africa"
+},
+"ECU": {
+"centroid": [
+-78.854,
+-1.736
+],
+"fips": "EC",
+"gdeltName": "Ecuador",
+"geojsonName": "Ecuador",
+"name": "Ecuador",
+"region": "Americas"
+},
+"EGY": {
+"centroid": [
+31.516,
+28.243
+],
+"fips": "EG",
+"gdeltName": "Egypt",
+"geojsonName": "Egypt",
+"name": "Egypt",
+"region": "Africa"
+},
+"ERI": {
+"centroid": [
+39.8,
+14.645
+],
+"fips": "ER",
+"gdeltName": "Eritrea",
+"geojsonName": "Eritrea",
+"name": "Eritrea",
+"region": "Africa"
+},
+"ESH": {
+"centroid": [
+-12.032,
+24.759
+],
+"fips": "WI",
+"gdeltName": "Western Sahara",
+"geojsonName": "Western Sahara",
+"name": "Western Sahara",
+"region": "Africa"
+},
+"ESP": {
+"centroid": [
+-4.482,
+40.269
+],
+"fips": "SP",
+"gdeltName": "Spain",
+"geojsonName": "Spain",
+"name": "Spain",
+"region": "Europe"
+},
+"EST": {
+"centroid": [
+25.71,
+58.507
+],
+"fips": "EN",
+"gdeltName": "Estonia",
+"geojsonName": "Estonia",
+"name": "Estonia",
+"region": "Europe"
+},
+"ETH": {
+"centroid": [
+39.042,
+9.101
+],
+"fips": "ET",
+"gdeltName": "Ethiopia",
+"geojsonName": "Ethiopia",
+"name": "Ethiopia",
+"region": "Africa"
+},
+"FIN": {
+"centroid": [
+25.772,
+65.477
+],
+"fips": "FI",
+"gdeltName": "Finland",
+"geojsonName": "Finland",
+"name": "Finland",
+"region": "Europe"
+},
+"FJI": {
+"centroid": [
+178.046,
+-17.725
+],
+"fips": "FJ",
+"gdeltName": "Fiji",
+"geojsonName": "Fiji",
+"name": "Fiji",
+"region": "Oceania"
+},
+"FLK": {
+"centroid": [
+-59.585,
+-51.735
+],
+"fips": "FK",
+"gdeltName": "Falkland Islands Islas Malvinas",
+"geojsonName": "Falkland Islands",
+"name": "Falkland Islands",
+"region": "Americas"
+},
+"FRA": {
+"centroid": [
+3.246,
+47.024
+],
+"fips": "FR",
+"gdeltName": "France",
+"geojsonName": "France",
+"name": "France",
+"region": "Europe"
+},
+"GAB": {
+"centroid": [
+11.885,
+-0.539
+],
+"fips": "GB",
+"gdeltName": "Gabon",
+"geojsonName": "Gabon",
+"name": "Gabon",
+"region": "Africa"
+},
+"GBR": {
+"centroid": [
+-3.083,
+54.006
+],
+"fips": "UK",
+"gdeltName": "United Kingdom",
+"geojsonName": "United Kingdom",
+"name": "United Kingdom",
+"region": "Europe"
+},
+"GEO": {
+"centroid": [
+43.43,
+42.179
+],
+"fips": "GG",
+"gdeltName": "Georgia",
+"geojsonName": "Georgia",
+"name": "Georgia",
+"region": "Asia"
+},
+"GHA": {
+"centroid": [
+-0.929,
+8.087
+],
+"fips": "GH",
+"gdeltName": "Ghana",
+"geojsonName": "Ghana",
+"name": "Ghana",
+"region": "Africa"
+},
+"GIN": {
+"centroid": [
+-10.909,
+10.349
+],
+"fips": "GV",
+"gdeltName": "Guinea",
+"geojsonName": "Guinea",
+"name": "Guinea",
+"region": "Africa"
+},
+"GMB": {
+"centroid": [
+-15.295,
+13.474
+],
+"fips": "GA",
+"gdeltName": "Gambia",
+"geojsonName": "Gambia",
+"name": "Gambia",
+"region": "Africa"
+},
+"GNB": {
+"centroid": [
+-15.133,
+11.908
+],
+"fips": "PU",
+"gdeltName": "Guinea-Bissau",
+"geojsonName": "Guinea Bissau",
+"name": "Guinea Bissau",
+"region": "Africa"
+},
+"GNQ": {
+"centroid": [
+10.047,
+1.407
+],
+"fips": "EK",
+"gdeltName": "Equatorial Guinea",
+"geojsonName": "Equatorial Guinea",
+"name": "Equatorial Guinea",
+"region": "Africa"
+},
+"GRC": {
+"centroid": [
+23.223,
+39.802
+],
+"fips": "GR",
+"gdeltName": "Greece",
+"geojsonName": "Greece",
+"name": "Greece",
+"region": "Europe"
+},
+"GRL": {
+"centroid": [
+-41.031,
+74.148
+],
+"fips": "GL",
+"gdeltName": "Greenland",
+"geojsonName": "Greenland",
+"name": "Greenland",
+"region": "Americas"
+},
+"GTM": {
+"centroid": [
+-90.209,
+15.508
+],
+"fips": "GT",
+"gdeltName": "Guatemala",
+"geojsonName": "Guatemala",
+"name": "Guatemala",
+"region": "Americas"
+},
+"GUF": {
+"centroid": [
+-53.418,
+3.461
+],
+"fips": "FG",
+"gdeltName": "French Guiana",
+"geojsonName": "French Guiana",
+"name": "French Guiana",
+"region": "Americas"
+},
+"GUY": {
+"centroid": [
+-58.979,
+4.643
+],
+"fips": "GY",
+"gdeltName": "Guyana",
+"geojsonName": "Guyana",
+"name": "Guyana",
+"region": "Americas"
+},
+"HND": {
+"centroid": [
+-86.381,
+14.711
+],
+"fips": "HO",
+"gdeltName": "Honduras",
+"geojsonName": "Honduras",
+"name": "Honduras",
+"region": "Americas"
+},
+"HRV": {
+"centroid": [
+16.437,
+44.888
+],
+"fips": "HR",
+"gdeltName": "Croatia",
+"geojsonName": "Croatia",
+"name": "Croatia",
+"region": "Europe"
+},
+"HTI": {
+"centroid": [
+-72.773,
+18.849
+],
+"fips": "HA",
+"gdeltName": "Haiti",
+"geojsonName": "Haiti",
+"name": "Haiti",
+"region": "Americas"
+},
+"HUN": {
+"centroid": [
+19.055,
+47.414
+],
+"fips": "HU",
+"gdeltName": "Hungary",
+"geojsonName": "Hungary",
+"name": "Hungary",
+"region": "Europe"
+},
+"IDN": {
+"centroid": [
+121.644,
+-2.027
+],
+"fips": "ID",
+"gdeltName": "Indonesia",
+"geojsonName": "Indonesia",
+"name": "Indonesia",
+"region": "Asia"
+},
+"IND": {
+"centroid": [
+83.445,
+24.019
+],
+"fips": "IN",
+"gdeltName": "India",
+"geojsonName": "India",
+"name": "India",
+"region": "Asia"
+},
+"IRL": {
+"centroid": [
+-7.723,
+53.532
+],
+"fips": "EI",
+"gdeltName": "Ireland",
+"geojsonName": "Ireland",
+"name": "Ireland",
+"region": "Europe"
+},
+"IRN": {
+"centroid": [
+53.416,
+33.4
+],
+"fips": "IR",
+"gdeltName": "Iran",
+"geojsonName": "Iran",
+"name": "Iran",
+"region": "Middle East"
+},
+"IRQ": {
+"centroid": [
+44.606,
+33.566
+],
+"fips": "IZ",
+"gdeltName": "Iraq",
+"geojsonName": "Iraq",
+"name": "Iraq",
+"region": "Middle East"
+},
+"ISL": {
+"centroid": [
+-19.266,
+65.278
+],
+"fips": "IC",
+"gdeltName": "Iceland",
+"geojsonName": "Iceland",
+"name": "Iceland",
+"region": "Europe"
+},
+"ISR": {
+"centroid": [
+35.201,
+32.16
+],
+"fips": "IS",
+"gdeltName": "Israel",
+"geojsonName": "Israel",
+"name": "Israel",
+"region": "Middle East"
+},
+"ITA": {
+"centroid": [
+12.656,
+43.085
+],
+"fips": "IT",
+"gdeltName": "Italy",
+"geojsonName": "Italy",
+"name": "Italy",
+"region": "Europe"
+},
+"JAM": {
+"centroid": [
+-77.348,
+18.188
+],
+"fips": "JM",
+"gdeltName": "Jamaica",
+"geojsonName": "Jamaica",
+"name": "Jamaica",
+"region": "Americas"
+},
+"JOR": {
+"centroid": [
+36.651,
+31.132
+],
+"fips": "JO",
+"gdeltName": "Jordan",
+"geojsonName": "Jordan",
+"name": "Jordan",
+"region": "Middle East"
+},
+"JPN": {
+"centroid": [
+135.971,
+35.665
+],
+"fips": "JA",
+"gdeltName": "Japan",
+"geojsonName": "Japan",
+"name": "Japan",
+"region": "Asia"
+},
+"KAZ": {
+"centroid": [
+65.106,
+47.202
+],
+"fips": "KZ",
+"gdeltName": "Kazakhstan",
+"geojsonName": "Kazakhstan",
+"name": "Kazakhstan",
+"region": "Asia"
+},
+"KEN": {
+"centroid": [
+37.872,
+1.218
+],
+"fips": "KE",
+"gdeltName": "Kenya",
+"geojsonName": "Kenya",
+"name": "Kenya",
+"region": "Africa"
+},
+"KGZ": {
+"centroid": [
+73.977,
+41.364
+],
+"fips": "KG",
+"gdeltName": "Kyrgyzstan",
+"geojsonName": "Kyrgyzstan",
+"name": "Kyrgyzstan",
+"region": "Asia"
+},
+"KHM": {
+"centroid": [
+104.949,
+12.55
+],
+"fips": "CB",
+"gdeltName": "Cambodia",
+"geojsonName": "Cambodia",
+"name": "Cambodia",
+"region": "Asia"
+},
+"KOR": {
+"centroid": [
+127.582,
+36.762
+],
+"fips": "KS",
+"gdeltName": "South Korea",
+"geojsonName": "South Korea",
+"name": "South Korea",
+"region": "Asia"
+},
+"KOS": {
+"centroid": [
+20.965,
+42.555
+],
+"fips": "KV",
+"gdeltName": "Kosovo",
+"geojsonName": "Kosovo",
+"name": "Kosovo",
+"region": "Europe"
+},
+"KWT": {
+"centroid": [
+47.742,
+29.337
+],
+"fips": "KU",
+"gdeltName": "Kuwait",
+"geojsonName": "Kuwait",
+"name": "Kuwait",
+"region": "Middle East"
+},
+"LAO": {
+"centroid": [
+103.634,
+18.286
+],
+"fips": "LA",
+"gdeltName": "Laos",
+"geojsonName": "Laos",
+"name": "Laos",
+"region": "Asia"
+},
+"LBN": {
+"centroid": [
+35.852,
+33.798
+],
+"fips": "LE",
+"gdeltName": "Lebanon",
+"geojsonName": "Lebanon",
+"name": "Lebanon",
+"region": "Middle East"
+},
+"LBR": {
+"centroid": [
+-9.116,
+6.631
+],
+"fips": "LI",
+"gdeltName": "Liberia",
+"geojsonName": "Liberia",
+"name": "Liberia",
+"region": "Africa"
+},
+"LBY": {
+"centroid": [
+16.457,
+28.492
+],
+"fips": "LY",
+"gdeltName": "Libya",
+"geojsonName": "Libya",
+"name": "Libya",
+"region": "Africa"
+},
+"LKA": {
+"centroid": [
+80.864,
+7.631
+],
+"fips": "CE",
+"gdeltName": "Sri Lanka",
+"geojsonName": "Sri Lanka",
+"name": "Sri Lanka",
+"region": "Asia"
+},
+"LSO": {
+"centroid": [
+28.37,
+-29.585
+],
+"fips": "LT",
+"gdeltName": "Lesotho",
+"geojsonName": "Lesotho",
+"name": "Lesotho",
+"region": "Africa"
+},
+"LTU": {
+"centroid": [
+23.818,
+55.133
+],
+"fips": "LH",
+"gdeltName": "Lithuania",
+"geojsonName": "Lithuania",
+"name": "Lithuania",
+"region": "Europe"
+},
+"LUX": {
+"centroid": [
+5.981,
+49.812
+],
+"fips": "LU",
+"gdeltName": "Luxembourg",
+"geojsonName": "Luxembourg",
+"name": "Luxembourg",
+"region": "Europe"
+},
+"LVA": {
+"centroid": [
+24.657,
+56.792
+],
+"fips": "LG",
+"gdeltName": "Latvia",
+"geojsonName": "Latvia",
+"name": "Latvia",
+"region": "Europe"
+},
+"MAR": {
+"centroid": [
+-9.464,
+28.762
+],
+"fips": "MO",
+"gdeltName": "Morocco",
+"geojsonName": "Morocco",
+"name": "Morocco",
+"region": "Africa"
+},
+"MDA": {
+"centroid": [
+28.47,
+47.047
+],
+"fips": "MD",
+"gdeltName": "Moldova",
+"geojsonName": "Moldova",
+"name": "Moldova",
+"region": "Europe"
+},
+"MDG": {
+"centroid": [
+46.989,
+-17.971
+],
+"fips": "MA",
+"gdeltName": "Madagascar",
+"geojsonName": "Madagascar",
+"name": "Madagascar",
+"region": "Africa"
+},
+"MEX": {
+"centroid": [
+-103.013,
+23.835
+],
+"fips": "MX",
+"gdeltName": "Mexico",
+"geojsonName": "Mexico",
+"name": "Mexico",
+"region": "Americas"
+},
+"MKD": {
+"centroid": [
+21.582,
+41.646
+],
+"fips": "MK",
+"gdeltName": "North Macedonia",
+"geojsonName": "Macedonia",
+"name": "North Macedonia",
+"region": "Europe"
+},
+"MLI": {
+"centroid": [
+-5.811,
+14.108
+],
+"fips": "ML",
+"gdeltName": "Mali",
+"geojsonName": "Mali",
+"name": "Mali",
+"region": "Africa"
+},
+"MLT": {
+"centroid": [
+14.474,
+35.88
+],
+"fips": "MT",
+"gdeltName": "Malta",
+"geojsonName": "Malta",
+"name": "Malta",
+"region": "Europe"
+},
+"MMR": {
+"centroid": [
+97.145,
+19.997
+],
+"fips": "BM",
+"gdeltName": "Myanmar",
+"geojsonName": "Myanmar",
+"name": "Myanmar",
+"region": "Asia"
+},
+"MNE": {
+"centroid": [
+19.432,
+42.736
+],
+"fips": "MJ",
+"gdeltName": "Montenegro",
+"geojsonName": "Montenegro",
+"name": "Montenegro",
+"region": "Europe"
+},
+"MNG": {
+"centroid": [
+104.585,
+47.205
+],
+"fips": "MG",
+"gdeltName": "Mongolia",
+"geojsonName": "Mongolia",
+"name": "Mongolia",
+"region": "Asia"
+},
+"MOZ": {
+"centroid": [
+34.866,
+-17.913
+],
+"fips": "MZ",
+"gdeltName": "Mozambique",
+"geojsonName": "Mozambique",
+"name": "Mozambique",
+"region": "Africa"
+},
+"MRT": {
+"centroid": [
+-12.299,
+18.668
+],
+"fips": "MR",
+"gdeltName": "Mauritania",
+"geojsonName": "Mauritania",
+"name": "Mauritania",
+"region": "Africa"
+},
+"MWI": {
+"centroid": [
+34.127,
+-12.996
+],
+"fips": "MI",
+"gdeltName": "Malawi",
+"geojsonName": "Malawi",
+"name": "Malawi",
+"region": "Africa"
+},
+"MYS": {
+"centroid": [
+114.788,
+3.688
+],
+"fips": "MY",
+"gdeltName": "Malaysia",
+"geojsonName": "Malaysia",
+"name": "Malaysia",
+"region": "Asia"
+},
+"NAM": {
+"centroid": [
+17.848,
+-21.647
+],
+"fips": "WA",
+"gdeltName": "Namibia",
+"geojsonName": "Namibia",
+"name": "Namibia",
+"region": "Africa"
+},
+"NCL": {
+"centroid": [
+165.512,
+-21.178
+],
+"fips": "NC",
+"gdeltName": "New Caledonia",
+"geojsonName": "New Caledonia",
+"name": "New Caledonia",
+"region": "Oceania"
+},
+"NER": {
+"centroid": [
+8.519,
+15.29
+],
+"fips": "NG",
+"gdeltName": "Niger",
+"geojsonName": "Niger",
+"name": "Niger",
+"region": "Africa"
+},
+"NGA": {
+"centroid": [
+8.449,
+9.706
+],
+"fips": "NI",
+"gdeltName": "Nigeria",
+"geojsonName": "Nigeria",
+"name": "Nigeria",
+"region": "Africa"
+},
+"NIC": {
+"centroid": [
+-85.017,
+13.082
+],
+"fips": "NU",
+"gdeltName": "Nicaragua",
+"geojsonName": "Nicaragua",
+"name": "Nicaragua",
+"region": "Americas"
+},
+"NLD": {
+"centroid": [
+5.586,
+52.159
+],
+"fips": "NL",
+"gdeltName": "Netherlands",
+"geojsonName": "Netherlands",
+"name": "Netherlands",
+"region": "Europe"
+},
+"NOR": {
+"centroid": [
+18.028,
+66.264
+],
+"fips": "NO",
+"gdeltName": "Norway",
+"geojsonName": "Norway",
+"name": "Norway",
+"region": "Europe"
+},
+"NPL": {
+"centroid": [
+84.559,
+28.209
+],
+"fips": "NP",
+"gdeltName": "Nepal",
+"geojsonName": "Nepal",
+"name": "Nepal",
+"region": "Asia"
+},
+"NZL": {
+"centroid": [
+175.418,
+-38.089
+],
+"fips": "NZ",
+"gdeltName": "New Zealand",
+"geojsonName": "New Zealand",
+"name": "New Zealand",
+"region": "Oceania"
+},
+"OMN": {
+"centroid": [
+56.655,
+20.821
+],
+"fips": "MU",
+"gdeltName": "Oman",
+"geojsonName": "Oman",
+"name": "Oman",
+"region": "Middle East"
+},
+"PAK": {
+"centroid": [
+69.403,
+30.815
+],
+"fips": "PK",
+"gdeltName": "Pakistan",
+"geojsonName": "Pakistan",
+"name": "Pakistan",
+"region": "Asia"
+},
+"PAN": {
+"centroid": [
+-80.327,
+8.468
+],
+"fips": "PM",
+"gdeltName": "Panama",
+"geojsonName": "Panama",
+"name": "Panama",
+"region": "Americas"
+},
+"PER": {
+"centroid": [
+-74.078,
+-7.928
+],
+"fips": "PE",
+"gdeltName": "Peru",
+"geojsonName": "Peru",
+"name": "Peru",
+"region": "Americas"
+},
+"PHL": {
+"centroid": [
+121.785,
+15.378
+],
+"fips": "RP",
+"gdeltName": "Philippines",
+"geojsonName": "Philippines",
+"name": "Philippines",
+"region": "Asia"
+},
+"PNG": {
+"centroid": [
+146.396,
+-7.913
+],
+"fips": "PP",
+"gdeltName": "Papua New Guinea",
+"geojsonName": "Papua New Guinea",
+"name": "Papua New Guinea",
+"region": "Oceania"
+},
+"POL": {
+"centroid": [
+19.288,
+51.682
+],
+"fips": "PL",
+"gdeltName": "Poland",
+"geojsonName": "Poland",
+"name": "Poland",
+"region": "Europe"
+},
+"PRI": {
+"centroid": [
+-66.434,
+18.276
+],
+"fips": "RQ",
+"gdeltName": "Puerto Rico",
+"geojsonName": "Puerto Rico",
+"name": "Puerto Rico",
+"region": "Americas"
+},
+"PRK": {
+"centroid": [
+127.329,
+39.886
+],
+"fips": "KN",
+"gdeltName": "North Korea",
+"geojsonName": "North Korea",
+"name": "North Korea",
+"region": "Asia"
+},
+"PRT": {
+"centroid": [
+-8.039,
+39.764
+],
+"fips": "PO",
+"gdeltName": "Portugal",
+"geojsonName": "Portugal",
+"name": "Portugal",
+"region": "Europe"
+},
+"PRY": {
+"centroid": [
+-57.707,
+-23.365
+],
+"fips": "PA",
+"gdeltName": "Paraguay",
+"geojsonName": "Paraguay",
+"name": "Paraguay",
+"region": "Americas"
+},
+"PSE": {
+"centroid": [
+35.257,
+31.909
+],
+"fips": "WE",
+"gdeltName": "Palestine",
+"geojsonName": "West Bank",
+"name": "West Bank",
+"region": "Middle East"
+},
+"QAT": {
+"centroid": [
+51.151,
+25.257
+],
+"fips": "QA",
+"gdeltName": "Qatar",
+"geojsonName": "Qatar",
+"name": "Qatar",
+"region": "Middle East"
+},
+"ROU": {
+"centroid": [
+25.063,
+45.911
+],
+"fips": "RO",
+"gdeltName": "Romania",
+"geojsonName": "Romania",
+"name": "Romania",
+"region": "Europe"
+},
+"RUS": {
+"centroid": [
+91.281,
+59.342
+],
+"fips": "RS",
+"gdeltName": "Russia",
+"geojsonName": "Russia",
+"name": "Russia",
+"region": "Europe"
+},
+"RWA": {
+"centroid": [
+29.888,
+-1.976
+],
+"fips": "RW",
+"gdeltName": "Rwanda",
+"geojsonName": "Rwanda",
+"name": "Rwanda",
+"region": "Africa"
+},
+"SAU": {
+"centroid": [
+43.697,
+23.869
+],
+"fips": "SA",
+"gdeltName": "Saudi Arabia",
+"geojsonName": "Saudi Arabia",
+"name": "Saudi Arabia",
+"region": "Middle East"
+},
+"SDN": {
+"centroid": [
+29.458,
+12.934
+],
+"fips": "SU",
+"gdeltName": "Sudan",
+"geojsonName": "Sudan",
+"name": "Sudan",
+"region": "Africa"
+},
+"SEN": {
+"centroid": [
+-14.591,
+13.878
+],
+"fips": "SG",
+"gdeltName": "Senegal",
+"geojsonName": "Senegal",
+"name": "Senegal",
+"region": "Africa"
+},
+"SLB": {
+"centroid": [
+159.158,
+-7.934
+],
+"fips": "BP",
+"gdeltName": "Solomon Islands",
+"geojsonName": "Solomon Islands",
+"name": "Solomon Islands",
+"region": "Oceania"
+},
+"SLE": {
+"centroid": [
+-11.62,
+8.507
+],
+"fips": "SL",
+"gdeltName": "Sierra Leone",
+"geojsonName": "Sierra Leone",
+"name": "Sierra Leone",
+"region": "Africa"
+},
+"SLV": {
+"centroid": [
+-88.842,
+13.803
+],
+"fips": "ES",
+"gdeltName": "El Salvador",
+"geojsonName": "El Salvador",
+"name": "El Salvador",
+"region": "Americas"
+},
+"SOL": {
+"centroid": [
+46.135,
+10.31
+],
+"fips": null,
+"gdeltName": null,
+"geojsonName": "Somaliland",
+"name": "Somaliland",
+"region": "Africa"
+},
+"SOM": {
+"centroid": [
+47.067,
+6.787
+],
+"fips": "SO",
+"gdeltName": "Somalia",
+"geojsonName": "Somalia",
+"name": "Somalia",
+"region": "Africa"
+},
+"SRB": {
+"centroid": [
+20.984,
+43.819
+],
+"fips": "RI",
+"gdeltName": "Serbia",
+"geojsonName": "Republic of Serbia",
+"name": "Republic of Serbia",
+"region": "Europe"
+},
+"SSD": {
+"centroid": [
+30.142,
+8.104
+],
+"fips": "OD",
+"gdeltName": "South Sudan",
+"geojsonName": "South Sudan",
+"name": "South Sudan",
+"region": "Africa"
+},
+"SUR": {
+"centroid": [
+-55.971,
+3.838
+],
+"fips": "NS",
+"gdeltName": "Suriname",
+"geojsonName": "Suriname",
+"name": "Suriname",
+"region": "Americas"
+},
+"SVK": {
+"centroid": [
+19.24,
+48.776
+],
+"fips": "LO",
+"gdeltName": "Slovakia",
+"geojsonName": "Slovakia",
+"name": "Slovakia",
+"region": "Europe"
+},
+"SVN": {
+"centroid": [
+14.995,
+46.107
+],
+"fips": "SI",
+"gdeltName": "Slovenia",
+"geojsonName": "Slovenia",
+"name": "Slovenia",
+"region": "Europe"
+},
+"SWE": {
+"centroid": [
+16.842,
+62.911
+],
+"fips": "SW",
+"gdeltName": "Sweden",
+"geojsonName": "Sweden",
+"name": "Sweden",
+"region": "Europe"
+},
+"SWZ": {
+"centroid": [
+31.437,
+-26.42
+],
+"fips": "WZ",
+"gdeltName": "Eswatini",
+"geojsonName": "Swaziland",
+"name": "Eswatini",
+"region": "Africa"
+},
+"SYR": {
+"centroid": [
+38.064,
+35.171
+],
+"fips": "SY",
+"gdeltName": "Syria",
+"geojsonName": "Syria",
+"name": "Syria",
+"region": "Middle East"
+},
+"TCD": {
+"centroid": [
+17.834,
+12.88
+],
+"fips": "CD",
+"gdeltName": "Chad",
+"geojsonName": "Chad",
+"name": "Chad",
+"region": "Africa"
+},
+"TGO": {
+"centroid": [
+0.921,
+8.629
+],
+"fips": "TO",
+"gdeltName": "Togo",
+"geojsonName": "Togo",
+"name": "Togo",
+"region": "Africa"
+},
+"THA": {
+"centroid": [
+100.62,
+13.148
+],
+"fips": "TH",
+"gdeltName": "Thailand",
+"geojsonName": "Thailand",
+"name": "Thailand",
+"region": "Asia"
+},
+"TJK": {
+"centroid": [
+70.865,
+38.588
+],
+"fips": "TI",
+"gdeltName": "Tajikistan",
+"geojsonName": "Tajikistan",
+"name": "Tajikistan",
+"region": "Asia"
+},
+"TKM": {
+"centroid": [
+58.618,
+39.216
+],
+"fips": "TX",
+"gdeltName": "Turkmenistan",
+"geojsonName": "Turkmenistan",
+"name": "Turkmenistan",
+"region": "Asia"
+},
+"TLS": {
+"centroid": [
+125.906,
+-8.746
+],
+"fips": "TT",
+"gdeltName": "East Timor",
+"geojsonName": "East Timor",
+"name": "East Timor",
+"region": "Asia"
+},
+"TTO": {
+"centroid": [
+-61.459,
+10.479
+],
+"fips": "TD",
+"gdeltName": "Trinidad and Tobago",
+"geojsonName": "Trinidad and Tobago",
+"name": "Trinidad and Tobago",
+"region": "Americas"
+},
+"TUN": {
+"centroid": [
+9.842,
+34.017
+],
+"fips": "TS",
+"gdeltName": "Tunisia",
+"geojsonName": "Tunisia",
+"name": "Tunisia",
+"region": "Africa"
+},
+"TUR": {
+"centroid": [
+36.604,
+38.48
+],
+"fips": "TU",
+"gdeltName": "Turkey",
+"geojsonName": "Turkey",
+"name": "Turkey",
+"region": "Middle East"
+},
+"TWN": {
+"centroid": [
+121.105,
+23.861
+],
+"fips": "TW",
+"gdeltName": "Taiwan",
+"geojsonName": "Taiwan",
+"name": "Taiwan",
+"region": "Asia"
+},
+"TZA": {
+"centroid": [
+34.343,
+-6.515
+],
+"fips": "TZ",
+"gdeltName": "Tanzania",
+"geojsonName": "United Republic of Tanzania",
+"name": "Tanzania",
+"region": "Africa"
+},
+"UGA": {
+"centroid": [
+31.917,
+1.256
+],
+"fips": "UG",
+"gdeltName": "Uganda",
+"geojsonName": "Uganda",
+"name": "Uganda",
+"region": "Africa"
+},
+"UKR": {
+"centroid": [
+30.651,
+48.464
+],
+"fips": "UP",
+"gdeltName": "Ukraine",
+"geojsonName": "Ukraine",
+"name": "Ukraine",
+"region": "Europe"
+},
+"URY": {
+"centroid": [
+-56.139,
+-32.698
+],
+"fips": "UY",
+"gdeltName": "Uruguay",
+"geojsonName": "Uruguay",
+"name": "Uruguay",
+"region": "Americas"
+},
+"USA": {
+"centroid": [
+-90.245,
+38.276
+],
+"fips": "US",
+"gdeltName": "United States",
+"geojsonName": "United States of America",
+"name": "United States",
+"region": "Americas"
+},
+"UZB": {
+"centroid": [
+65.485,
+41.08
+],
+"fips": "UZ",
+"gdeltName": "Uzbekistan",
+"geojsonName": "Uzbekistan",
+"name": "Uzbekistan",
+"region": "Asia"
+},
+"VEN": {
+"centroid": [
+-66.967,
+7.285
+],
+"fips": "VE",
+"gdeltName": "Venezuela",
+"geojsonName": "Venezuela",
+"name": "Venezuela",
+"region": "Americas"
+},
+"VNM": {
+"centroid": [
+106.023,
+16.957
+],
+"fips": "VM",
+"gdeltName": "Vietnam",
+"geojsonName": "Vietnam",
+"name": "Vietnam",
+"region": "Asia"
+},
+"VUT": {
+"centroid": [
+166.937,
+-15.273
+],
+"fips": "NH",
+"gdeltName": "Vanuatu",
+"geojsonName": "Vanuatu",
+"name": "Vanuatu",
+"region": "Oceania"
+},
+"XNC": {
+"centroid": [
+33.427,
+35.177
+],
+"fips": "CY",
+"gdeltName": "Cyprus",
+"geojsonName": "Northern Cyprus",
+"name": "Northern Cyprus",
+"region": "Europe"
+},
+"YEM": {
+"centroid": [
+46.497,
+15.459
+],
+"fips": "YM",
+"gdeltName": "Yemen",
+"geojsonName": "Yemen",
+"name": "Yemen",
+"region": "Middle East"
+},
+"ZAF": {
+"centroid": [
+24.905,
+-28.612
+],
+"fips": "SF",
+"gdeltName": "South Africa",
+"geojsonName": "South Africa",
+"name": "South Africa",
+"region": "Africa"
+},
+"ZMB": {
+"centroid": [
+28.011,
+-12.849
+],
+"fips": "ZA",
+"gdeltName": "Zambia",
+"geojsonName": "Zambia",
+"name": "Zambia",
+"region": "Africa"
+},
+"ZWE": {
+"centroid": [
+29.659,
+-18.87
+],
+"fips": "ZI",
+"gdeltName": "Zimbabwe",
+"geojsonName": "Zimbabwe",
+"name": "Zimbabwe",
+"region": "Africa"
+}
+}

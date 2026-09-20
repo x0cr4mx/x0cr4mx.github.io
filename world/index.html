@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WORLD WATCHER — Global Geopolitical Monitor</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◉</text></svg>" />
+</head>
+<body>
+
+<!-- ======= K1 TERMINAL BAR ======= -->
+<div id="k1bar">
+  <span class="k1-brand">K1 ▸ WORLD WATCHER</span>
+  <span class="k1-links">
+    <a href="/">← TERMINAL</a>
+    <a href="/world/" target="_blank" rel="noopener">POP OUT ↗</a>
+  </span>
+</div>
+
+<!-- ======= TOP BAR ======= -->
+<header id="topbar">
+  <div class="brand">
+    <span class="brand-mark">◉</span>
+    <span class="brand-name">WORLD<b>WATCHER</b></span>
+    <span class="brand-sub">GEOPOLITICAL INTELLIGENCE TERMINAL</span>
+  </div>
+  <div class="topbar-mid">
+    <div id="ticker-wrap"><div id="ticker"><span class="ticker-item dim">CONNECTING TO GDELT FEED…</span></div></div>
+  </div>
+  <div class="topbar-right">
+    <div class="stat-chip" id="chip-feed"><i></i><span id="chip-feed-txt">FEED —</span></div>
+    <div class="stat-chip" id="chip-clock"><i class="amber"></i><span id="clock">--:--:--</span> UTC</div>
+    <button id="btn-refresh" title="Refresh now">⟳</button>
+  </div>
+</header>
+
+<!-- ======= MAIN LAYOUT ======= -->
+<main id="layout">
+
+  <!-- LEFT: RISK RANKING -->
+  <aside id="left-panel" class="panel">
+    <div class="panel-head">
+      <span>⬢ RISK MONITOR</span>
+      <span class="panel-head-right" id="risk-count">—</span>
+    </div>
+    <div class="legend">
+      <span><i class="dot crit"></i>CRITICAL</span>
+      <span><i class="dot high"></i>HIGH</span>
+      <span><i class="dot elev"></i>ELEVATED</span>
+      <span><i class="dot low"></i>LOW</span>
+    </div>
+    <div id="risk-list" class="scrollable"></div>
+    <div class="panel-head" style="margin-top:auto">
+      <span>⬢ COUNTRIES</span>
+    </div>
+    <input id="country-search" type="text" placeholder="Search country…" autocomplete="off" />
+    <div id="country-list" class="scrollable small"></div>
+  </aside>
+
+  <!-- CENTER: GLOBE -->
+  <section id="globe-wrap">
+    <div id="globe"></div>
+    <div id="globe-overlay">
+      <div id="overlay-stats"></div>
+      <div id="overlay-hint">CLICK A COUNTRY ▸ LIVE NATIONAL FEED · DRAG TO ROTATE · SCROLL TO ZOOM</div>
+    </div>
+    <div id="tooltip" class="hidden"></div>
+  </section>
+
+  <!-- RIGHT: FEED / COUNTRY / ANALYTICS -->
+  <aside id="right-panel" class="panel">
+    <div class="tabs">
+      <button class="tab active" data-tab="feed">LIVE FEED</button>
+      <button class="tab" data-tab="country">COUNTRY</button>
+      <button class="tab" data-tab="analytics">ANALYTICS</button>
+    </div>
+
+    <div id="tab-feed" class="tabpane active">
+      <div class="feed-filters">
+        <button class="ff active" data-ff="all">ALL</button>
+        <button class="ff" data-ff="war">WAR/CONFLICT</button>
+        <button class="ff" data-ff="politics">POLITICS</button>
+        <button class="ff" data-ff="econ">ECONOMY</button>
+        <button class="ff" data-ff="speech">LEADERS</button>
+      </div>
+      <div id="feed-list" class="scrollable"></div>
+    </div>
+
+    <div id="tab-country" class="tabpane">
+      <div id="country-brief">
+        <div class="empty-state">SELECT A COUNTRY ON THE GLOBE<br/>OR FROM THE LIST</div>
+      </div>
+    </div>
+
+    <div id="tab-analytics" class="tabpane">
+      <div class="chart-block">
+        <div class="chart-title">CONFLICT COVERAGE SHARE — TOP 10 <span class="chart-sub">% of national coverage matching conflict query</span></div>
+        <canvas id="chart-risk" height="180"></canvas>
+      </div>
+      <div class="chart-block">
+        <div class="chart-title">TOP RECURRING TOPICS <span class="chart-sub">keywords in live headlines</span></div>
+        <canvas id="chart-topics" height="180"></canvas>
+      </div>
+      <div class="chart-block">
+        <div class="chart-title">GLOBAL CONFLICT TONE <span class="chart-sub">GDELT average tone, lower = worse</span></div>
+        <canvas id="chart-tone" height="150"></canvas>
+      </div>
+      <div class="chart-block">
+        <div class="chart-title">REGIONAL HOTSPOTS <span class="chart-sub">articles by source region</span></div>
+        <canvas id="chart-regions" height="160"></canvas>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<!-- ======= STATUS BAR ======= -->
+<footer id="statusbar">
+  <span id="sb-source">SRC: GDELT DOC 2.0</span>
+  <span id="sb-updated">LAST: —</span>
+  <span id="sb-queue">Q: 0</span>
+  <span id="sb-articles">ARTICLES: 0</span>
+  <span id="sb-countries">COUNTRIES: 0</span>
+  <span class="sb-right">WORLD WATCHER v1.0 · DATA: GDELT PROJECT (15-MIN CYCLE) · NOT FOR OPERATIONAL USE</span>
+</footer>
+
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script src="https://unpkg.com/globe.gl@2.34.6/dist/globe.gl.min.js"></script>
+<script src="/config.js"></script>
+<script src="js/config.js"></script>
+<script src="js/gdelt.js"></script>
+<script src="js/geo.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

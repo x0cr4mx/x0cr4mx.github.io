@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K1 TERMINAL</title>
+<link rel="stylesheet" href="/assets/terminal.css">
+<script src="/config.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <span class="brand">K1 TERMINAL</span>
+  <span class="sub">MARKET AI · PAPER ONLY</span>
+  <span class="flex-sp"></span>
+  <span id="conn-dot" class="conn-dot"></span>
+  <span id="conn-label" class="micro conn-label">CONN</span>
+  <span id="utc-clock" class="clock"></span>
+  <span id="user-email" class="micro"></span>
+  <button id="signout" class="btn warn">SIGN OUT</button>
+</header>
+
+<div class="tape"><div class="tape-inner" id="tape"><span class="micro" style="padding:0 10px">AWAITING MARKET DATA…</span></div></div>
+
+<main class="grid">
+  <section class="panel" id="p-markets">
+    <div class="panel-h">
+      <span class="panel-t">MARKETS</span>
+      <select id="mk-sym" class="inp"></select>
+      <select id="mk-tf" class="inp"></select>
+      <span class="flex-sp"></span>
+      <span id="mk-anom" class="micro"></span>
+      <a class="btn" href="/monitor/markets.html" target="_blank" rel="noopener">↗ POP OUT</a>
+    </div>
+    <div class="panel-b nopad" style="display:flex;flex-direction:column">
+      <div class="row pad" style="border-bottom:1px solid var(--border);flex:0 0 auto">
+        <span id="mk-last" class="cy" style="font-size:16px">—</span>
+        <span id="mk-chg" style="font-size:12px">—</span>
+        <span class="flex-sp"></span>
+        <span id="mk-meta" class="micro"></span>
+      </div>
+      <div class="grow" style="position:relative;min-height:0">
+        <canvas id="mk-chart" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-patterns">
+    <div class="panel-h">
+      <span class="panel-t">PATTERN SCANNER</span>
+      <span class="flex-sp"></span>
+      <span id="scan-ts" class="micro"></span>
+      <a class="btn" href="/monitor/patterns.html" target="_blank" rel="noopener">↗ POP OUT</a>
+    </div>
+    <div class="panel-b nopad scroll">
+      <table class="t" id="scan-table">
+        <thead><tr>
+          <th>#</th><th>SYMBOL</th><th>TF</th><th>DIR</th>
+          <th class="num">SCORE</th><th class="num">RR</th><th style="width:34%">QUALITY</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="empty" id="scan-empty">NO DATA — awaiting scanner</div>
+    </div>
+    <div class="panel-f"><span id="scan-foot">—</span></div>
+  </section>
+
+  <section class="panel" id="p-world">
+    <div class="panel-h">
+      <span class="panel-t">WORLD RISK</span>
+      <span class="flex-sp"></span>
+      <span id="world-esc" class="micro"></span>
+      <a class="btn" href="/world/" target="_blank" rel="noopener">↗ GLOBE</a>
+    </div>
+    <div class="panel-b nopad scroll">
+      <table class="t" id="world-table">
+        <thead><tr><th>COUNTRY</th><th class="num">MENTIONS</th><th class="num">SHARE</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="empty" id="world-empty">NO DATA — awaiting world watcher</div>
+    </div>
+    <div class="panel-f"><span id="world-foot">—</span><span class="flex-sp"></span><a href="/world/" style="letter-spacing:.1em">FULL GLOBE ▸</a></div>
+  </section>
+
+  <section class="panel" id="p-decisions">
+    <div class="panel-h">
+      <span class="panel-t">DECISION STREAM</span>
+      <span class="flex-sp"></span>
+      <a class="btn" href="/monitor/decisions.html" target="_blank" rel="noopener">↗ POP OUT</a>
+    </div>
+    <div class="panel-b nopad scroll">
+      <table class="t" id="dec-table">
+        <thead><tr><th>TIME UTC</th><th>SYMBOL</th><th>ACTION</th><th class="num">PROB</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="empty" id="dec-empty">NO DATA — awaiting decision engine</div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-paper">
+    <div class="panel-h">
+      <span class="panel-t">PAPER</span>
+      <span class="flex-sp"></span>
+      <span id="paper-meta" class="micro"></span>
+      <a class="btn" href="/monitor/paper.html" target="_blank" rel="noopener">↗ POP OUT</a>
+    </div>
+    <div class="panel-b nopad" style="display:flex;flex-direction:column">
+      <div class="stats" style="flex:0 0 auto;margin:6px 8px">
+        <div class="stat"><div class="k">REALIZED PNL</div><div class="v" id="pp-pnl">—</div></div>
+        <div class="stat"><div class="k">OPEN POS</div><div class="v cy" id="pp-open">—</div></div>
+        <div class="stat"><div class="k">TRADES</div><div class="v" id="pp-trades">—</div></div>
+        <div class="stat"><div class="k">FEES</div><div class="v amb" id="pp-fees">—</div></div>
+      </div>
+      <div class="grow" style="position:relative;min-height:0">
+        <canvas id="pp-chart" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-system">
+    <div class="panel-h">
+      <span class="panel-t">SYSTEM</span>
+      <span class="flex-sp"></span>
+      <a class="btn" href="/monitor/system.html" target="_blank" rel="noopener">↗ POP OUT</a>
+    </div>
+    <div class="panel-b scroll">
+      <div id="sys-chips" class="row" style="flex-wrap:wrap"></div>
+      <div class="micro mt8" style="margin:8px 0 3px">RECORDS BY KIND</div>
+      <table class="t" id="sys-table">
+        <thead><tr><th>KIND</th><th class="num">N</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="micro mt8" id="sys-last" style="margin-top:8px">—</div>
+    </div>
+  </section>
+</main>
+
+<footer class="statusbar">
+  <span>DB <b id="sb-host">—</b></span>
+  <span>RECORDS <b id="sb-recs">—</b></span>
+  <span>LAST REFRESH <b id="sb-ts">—</b></span>
+  <span class="flex-sp"></span>
+  <span class="dim">K1 MARKET AI · RESEARCH TERMINAL · NOT INVESTMENT ADVICE</span>
+</footer>
+
+<script type="module" src="/assets/index.js"></script>
+</body>
+</html>

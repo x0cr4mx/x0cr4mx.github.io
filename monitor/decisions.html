@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K1 ▸ DECISIONS</title>
+<link rel="stylesheet" href="/assets/terminal.css">
+<script src="/config.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <span class="brand">K1 ▸ DECISIONS</span>
+  <span id="conn-dot" class="conn-dot"></span>
+  <span id="conn-label" class="micro conn-label">CONN</span>
+  <span class="flex-sp"></span>
+  <span id="utc-clock" class="clock"></span>
+  <span id="user-email" class="micro"></span>
+  <a class="btn" href="/">← TERMINAL</a>
+  <button id="signout" class="btn warn">SIGN OUT</button>
+</header>
+<main class="fill">
+  <div class="toolbar" id="filters">
+    <span class="micro">FILTER ▸</span>
+  </div>
+  <div class="scroll">
+    <table class="t" id="ledger">
+      <thead><tr>
+        <th>TIME UTC</th><th>KIND</th><th>SYMBOL</th><th>TF</th>
+        <th>DIR/ACT</th><th class="num">PROB/QTY</th><th>SUMMARY</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="empty" id="empty">NO DATA — awaiting workers</div>
+  </div>
+  <div class="panel-f"><span id="foot">—</span></div>
+</main>
+<script type="module" src="/assets/monitor-decisions.js"></script>
+</body>
+</html>
