@@ -32,12 +32,10 @@ function wwApiFetch(pathOrUrl, opts = {}) {
 }
 
 const WW_CONFIG = {
-  // DOC 2.0 via edge function: stesso path/query dell'upstream, ma l'egress
-  // IP e' quello della function -> il rate-limit per-IP del browser non si
-  // applica e le chiamate sono auth-gated come il resto del data plane.
-  GDELT_DOC: WW_API_BASE
-    ? `${WW_API_BASE}/gdelt`
-    : "https://api.gdeltproject.org/api/v2/doc/doc",
+  // DOC 2.0 diretto dal browser: GDELT limita per-IP e l'egress Supabase e'
+  // condiviso (429 cronico); l'IP del browser ha un budget dedicato.
+  // La edge function /gdelt resta deployata come fallback server-side.
+  GDELT_DOC: "https://api.gdeltproject.org/api/v2/doc/doc",
   // GDELT GEO 2.0 API attualmente risponde 404 (migrazione Spanner, apr 2026):
   // i punti conflitto arrivano da /api/events (server.py -> export CAMEO 15-min)
   // o dallo snapshot vendored.
