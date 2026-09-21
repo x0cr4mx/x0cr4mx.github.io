@@ -660,6 +660,6 @@ function timeAgo(ts) {
 
 boot().catch((e) => {
   console.error(e);
-  $("ticker").innerHTML = `<span class="ticker-item war">BOOT ERROR: ${esc(e.message)}</span>`;
+  $("ticker").innerHTML = `<span class="ticker-item war">STARTUP FAILED — reload the page or check your connection</span>`;
 });
 })();
