@@ -68,6 +68,11 @@ async function boot() {
       for (const st of Object.values(S.countryState)) st.flashUntil = 0; // niente flash su snapshot
       renderAll();
       S.dataMode = "snapshot";
+      // keep the status bar truthful before the first live refresh lands:
+      // without this it stays "ARTICLES: 0 · LAST: —" while the snapshot
+      // feed is already on screen
+      setFeedChip("warn", "CACHED");
+      updateStatusBar();
     }
   } catch {}
 
