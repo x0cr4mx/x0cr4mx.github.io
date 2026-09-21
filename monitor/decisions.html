@@ -5,11 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>K1 ▸ DECISIONS</title>
 <link rel="stylesheet" href="/assets/terminal.css">
+<link rel="stylesheet" href="/assets/tour.css">
 <script src="/config.js"></script>
 </head>
 <body>
 <header class="topbar">
   <span class="brand">K1 ▸ DECISIONS</span>
+  <span class="sub">PAPER ONLY</span>
   <span id="conn-dot" class="conn-dot"></span>
   <span id="conn-label" class="micro conn-label">CONN</span>
   <span class="flex-sp"></span>
@@ -26,7 +28,7 @@
     <table class="t" id="ledger">
       <thead><tr>
         <th>TIME UTC</th><th>KIND</th><th>SYMBOL</th><th>TF</th>
-        <th>DIR/ACT</th><th class="num">PROB/QTY</th><th>SUMMARY</th>
+        <th title="DIR/ACT — direction for setups, action for decisions">DIR/ACT</th><th class="num" title="PROB for forecasts · QTY for risk assessments">PROB/QTY</th><th>SUMMARY</th>
       </tr></thead>
       <tbody></tbody>
     </table>
@@ -35,5 +37,6 @@
   <div class="panel-f"><span id="foot">—</span></div>
 </main>
 <script type="module" src="/assets/monitor-decisions.js"></script>
+<script type="module" src="/assets/tour.js"></script>
 </body>
 </html>

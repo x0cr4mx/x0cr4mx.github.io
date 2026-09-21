@@ -52,6 +52,16 @@ const Gdelt = (() => {
     try {
       res = await wwApiFetch(url, { signal: ctl.signal });
       text = await res.text();
+    } catch (e) {
+      // Fetch-level failure (network drop, or a 429/503 whose response the
+      // browser hides because it lacks ACAO headers). Treat it like a
+      // throttle and retry with backoff instead of giving up immediately.
+      if (attempt < WW_CONFIG.MAX_RETRIES) {
+        cooldownUntil = Date.now() + 15000 * (attempt + 1);
+        await new Promise((r) => setTimeout(r, 15000 * (attempt + 1)));
+        return fetchJSON(url, attempt + 1);
+      }
+      throw e;
     } finally {
       clearTimeout(to);
     }
@@ -94,9 +104,22 @@ const Gdelt = (() => {
   function req(params, key, transform) {
     const cached = cacheGet(key);
     if (cached) return Promise.resolve({ ...cached, cached: true });
-    const url = `${WW_CONFIG.GDELT_DOC}?${new URLSearchParams(params)}`;
+    const qs = new URLSearchParams(params);
+    const url = `${WW_CONFIG.GDELT_DOC}?${qs}`;
     return enqueue(async () => {
-      const data = await fetchJSON(url);
+      let data;
+      try {
+        data = await fetchJSON(url);
+      } catch (e) {
+        // Direct GDELT failed for good (rate limit / CORS-blocked throttle).
+        // One last attempt through the server-side proxy (auth-gated edge
+        // function, or same-origin /api on Vercel) — server egress is not
+        // bound by the browser's per-IP CORS/rate-limit view.
+        const proxy = `${WW_API_BASE || "/api"}/gdelt?${qs}`;
+        const res = await fetchJSON(proxy);
+        if (res && res.error) throw new Error(res.error);
+        data = res;
+      }
       const out = transform ? transform(data) : data;
       cacheSet(key, out);
       return out;

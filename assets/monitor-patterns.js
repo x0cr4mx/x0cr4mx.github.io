@@ -46,10 +46,18 @@ function render() {
   bar.appendChild(el("span", "micro", `SCANNED ${scan.scanned ?? "—"}`));
   const feeds = Object.entries(scan.feed_status || {});
   for (const [src, st] of feeds) {
+    const raw = String(st ?? "").trim();
+    // feed_status values are raw engine strings ("ok", "cache: 88", "", …) —
+    // map them to truthful labels instead of echoing them verbatim.
+    let cls = "down", lbl = "DOWN";
+    if (raw === "ok") { cls = "up"; lbl = "OK"; }
+    else if (/^cache/i.test(raw)) { cls = "amb"; lbl = "CACHED"; }
+    else if (!raw) { cls = ""; lbl = "—"; }
     const c = el("span", "chip static");
     c.appendChild(document.createTextNode(`${src.toUpperCase()} `));
-    c.appendChild(el("b", st === "ok" ? "up" : "down", String(st).toUpperCase()));
+    c.appendChild(el("b", cls, lbl));
     c.querySelector("b").style.fontWeight = "400";
+    c.title = `feed ${src}: ${raw || "no status reported"}`;
     bar.appendChild(c);
   }
   const nerr = scan.errors ? Object.keys(scan.errors).length : 0;
@@ -84,7 +92,9 @@ function setupCard(s) {
   h.appendChild(badge(s.direction || "?"));
   h.appendChild(el("span", "flex-sp"));
   h.appendChild(el("span", `micro ${dirClass(s.direction)}`, `SCORE ${fmtSigned(s.score, 2)}`));
-  h.appendChild(el("span", "micro amb", `Q ${fmtNum(s.quality, 2)}`));
+  const qChip = el("span", "micro amb", `Q ${fmtNum(s.quality, 2)}`);
+  qChip.title = "Q — bot quality score for this setup (higher is better)";
+  h.appendChild(qChip);
   card.appendChild(h);
 
   // composite score bar -1..+1
@@ -131,18 +141,20 @@ function setupCard(s) {
 
   // entry/stop/target/rr
   const kv = el("div", "kv");
-  for (const [k, v, cls] of [
-    ["ENTRY", fmtPx(s.entry), ""],
-    ["STOP", fmtPx(s.stop), "down"],
-    ["TARGET", fmtPx(s.target), "up"],
-    ["RR", fmtNum(s.rr, 1), "cy"],
-    ["LAST", fmtPx(s.last_close), ""],
-    ["ATR%", s.atr_pct != null ? fmtNum(s.atr_pct * 100, 2) : "—", ""],
-    ["UPDATED", s.updated_at ? timeAgo(s.updated_at * 1000) : "—", "dim"],
-    ["DIR", s.direction || "—", dirClass(s.direction)],
+  for (const [k, v, cls, tip] of [
+    ["ENTRY", fmtPx(s.entry), "", "Price where the bot would open the trade"],
+    ["STOP", fmtPx(s.stop), "down", "Price that proves the idea wrong (stop-loss)"],
+    ["TARGET", fmtPx(s.target), "up", "Price where the bot would take profit"],
+    ["RR", fmtNum(s.rr, 1), "cy", "RR — reward/risk ratio: target distance divided by stop distance"],
+    ["LAST", fmtPx(s.last_close), "", "Most recent observed price"],
+    ["ATR%", s.atr_pct != null ? fmtNum(s.atr_pct * 100, 2) : "—", "", "ATR% — average bar range as % of price; a volatility measure"],
+    ["UPDATED", s.updated_at ? timeAgo(s.updated_at * 1000) : "—", "dim", "When the scanner last refreshed this setup"],
+    ["DIR", s.direction || "—", dirClass(s.direction), "Trade direction the bot would take (paper only)"],
   ]) {
     const cell = el("div");
-    cell.appendChild(el("div", "kk", k));
+    const kk = el("div", "kk", k);
+    kk.title = tip;
+    cell.appendChild(kk);
     cell.appendChild(el("div", `vv ${cls}`, v));
     kv.appendChild(cell);
   }

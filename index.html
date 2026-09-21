@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>K1 TERMINAL</title>
 <link rel="stylesheet" href="/assets/terminal.css">
+<link rel="stylesheet" href="/assets/tour.css">
 <script src="/config.js"></script>
 </head>
 <body>
@@ -55,7 +56,7 @@
       <table class="t" id="scan-table">
         <thead><tr>
           <th>#</th><th>SYMBOL</th><th>TF</th><th>DIR</th>
-          <th class="num">SCORE</th><th class="num">RR</th><th style="width:34%">QUALITY</th>
+          <th class="num">SCORE</th><th class="num" title="RR — reward/risk ratio: target distance divided by stop distance">RR</th><th style="width:34%" title="Bot quality score for the setup (bar fills left to right)">QUALITY</th>
         </tr></thead>
         <tbody></tbody>
       </table>
@@ -78,7 +79,7 @@
       </table>
       <div class="empty" id="world-empty">NO DATA — awaiting world watcher</div>
     </div>
-    <div class="panel-f"><span id="world-foot">—</span><span class="flex-sp"></span><a href="/world/" style="letter-spacing:.1em">FULL GLOBE ▸</a></div>
+    <div class="panel-f"><span id="world-foot">—</span><span class="flex-sp"></span><a href="/world/" target="_blank" rel="noopener" style="letter-spacing:.1em">FULL GLOBE ▸</a></div>
   </section>
 
   <section class="panel" id="p-decisions">
@@ -89,7 +90,7 @@
     </div>
     <div class="panel-b nopad scroll">
       <table class="t" id="dec-table">
-        <thead><tr><th>TIME UTC</th><th>SYMBOL</th><th>ACTION</th><th class="num">PROB</th></tr></thead>
+        <thead><tr><th>TIME UTC</th><th>SYMBOL</th><th>ACTION</th><th class="num" title="PROB — probability attached to the forecast behind the decision">PROB</th></tr></thead>
         <tbody></tbody>
       </table>
       <div class="empty" id="dec-empty">NO DATA — awaiting decision engine</div>
@@ -112,6 +113,7 @@
       </div>
       <div class="grow" style="position:relative;min-height:0">
         <canvas id="pp-chart" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+        <div class="empty" id="pp-empty" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">NO PAPER TRADES YET — simulated trades appear here once the bot closes positions</div>
       </div>
     </div>
   </section>
@@ -132,6 +134,26 @@
       <div class="micro mt8" id="sys-last" style="margin-top:8px">—</div>
     </div>
   </section>
+
+  <section class="panel" id="p-top9">
+    <div class="panel-h">
+      <span class="panel-t">TOP 9 ▸ PATTERN</span>
+      <span class="flex-sp"></span>
+      <span id="t9-meta" class="micro"></span>
+      <a class="btn" href="/monitor/top9.html" target="_blank" rel="noopener">↗ POP OUT</a>
+    </div>
+    <div class="panel-b nopad scroll">
+      <table class="t" id="t9-table">
+        <thead><tr>
+          <th>SYMBOL</th><th>TF</th><th>DIR</th>
+          <th class="num">SCORE</th><th class="num" title="Q — bot quality score for the pattern (higher is better)">Q</th><th title="SEMIF — the bot's second-pass review: VALID confirmed, IMPOSTOR rejected, QUEUED pending">SEMIF</th><th>AGE</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="empty" id="t9-empty">NO DATA — awaiting detections</div>
+    </div>
+    <div class="panel-f"><span class="micro dim">PAPER ONLY — local SemIf reviews, nothing is executed</span><span class="flex-sp"></span><span id="t9-foot">—</span></div>
+  </section>
 </main>
 
 <footer class="statusbar">
@@ -143,5 +165,6 @@
 </footer>
 
 <script type="module" src="/assets/index.js"></script>
+<script type="module" src="/assets/tour.js"></script>
 </body>
 </html>

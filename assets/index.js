@@ -5,6 +5,9 @@ import {
   fmtNum, fmtPx, fmtPct, fmtSigned, fmtUtc, fmtClock, timeAgo, usToDate,
   el, clear, badge, dirClass, maskedHost,
 } from "./core.js";
+import {
+  detSymbol, loadTopDetections, rankDetections, semifLabel,
+} from "./top9-data.js";
 
 const TF_ORDER = ["1m", "5m", "15m", "1h", "4h", "1d"];
 const $ = id => document.getElementById(id);
@@ -26,7 +29,7 @@ async function start(sb) {
   $("sb-host").textContent = maskedHost();
   await Promise.allSettled([
     loadMarkets(sb), loadScanner(sb), loadWorld(), loadDecisions(sb),
-    loadPaper(sb), loadSystem(sb),
+    loadPaper(sb), loadSystem(sb), loadTop9(sb),
   ]);
   // seed last-event marker from whatever we loaded
   let mx = 0;
@@ -51,6 +54,8 @@ async function start(sb) {
       if (pl) renderScanner(typeof pl === "string" ? safeParse(pl) : pl);
     });
   }
+  // detections has no realtime publication -> poll
+  setInterval(() => loadTop9(sb), 60000);
 }
 
 function safeParse(s) { try { return JSON.parse(s); } catch { return null; } }
@@ -152,7 +157,7 @@ function renderMarketPanel() {
   const ce = $("mk-chg");
   ce.textContent = `${fmtSigned(last.close - first.open)} (${fmtPct(chg)})`;
   ce.className = chg >= 0 ? "up" : "down";
-  $("mk-meta").textContent = `${b.arr.length} BARS · ${fmtUtc(last.close_time)}Z`;
+  $("mk-meta").textContent = `${b.arr.length} BARS · AS OF ${fmtUtc(last.close_time)}Z`;
 }
 
 function renderAnomCount() {
@@ -182,8 +187,10 @@ function renderTape() {
     const chg = c.close / first.open - 1;
     items.push({ sym, px: c.close, chg });
   }
-  // duplicate for seamless marquee loop
-  for (let rep = 0; rep < 2; rep++) {
+  // duplicate for seamless marquee loop — but only when there is more than
+  // one symbol, otherwise the same item looks like a duplicated feed entry
+  const reps = items.length > 1 ? 2 : 1;
+  for (let rep = 0; rep < reps; rep++) {
     for (const it of items) {
       const s = el("span", "tape-item");
       s.appendChild(el("span", "sym", it.sym));
@@ -234,8 +241,52 @@ function renderScanner(pl) {
   const down = feeds.filter(([, v]) => v !== "ok").length;
   const nerr = pl.errors ? Object.keys(pl.errors).length : 0;
   $("scan-foot").textContent =
-    `scanned ${pl.scanned ?? "—"} · feed ${down ? `${down}/${feeds.length} DOWN` : "OK"}${nerr ? ` · ${nerr} ERR` : ""}`;
+    `SCANNED ${pl.scanned ?? "—"} · FEED ${down ? `${down}/${feeds.length} DOWN` : "OK"}${nerr ? ` · ${nerr} ERR` : ""}`;
   $("scan-ts").textContent = pl.ts ? `SCAN ${fmtClock(pl.ts * 1000)}Z` : "";
+}
+
+/* ------------------------------------------------------------------ TOP 9 */
+async function loadTop9(sb) {
+  try {
+    renderTop9(await loadTopDetections(sb, 60));
+  } catch { renderTop9(null); }
+}
+
+function renderTop9(rows) {
+  const tb = $("t9-table").tBodies[0];
+  clear(tb);
+  if (!rows || !rows.length) {
+    $("t9-empty").classList.remove("hidden");
+    $("t9-empty").textContent = rows
+      ? "NO DETECTIONS YET — the pattern bot has not published anything"
+      : "DATA UNAVAILABLE — could not load detections";
+    $("t9-meta").textContent = "";
+    $("t9-foot").textContent = "—";
+    return;
+  }
+  $("t9-empty").classList.add("hidden");
+  const top = rankDetections(rows, 9);
+  for (const d of top) {
+    const tr = el("tr", "clickable");
+    tr.title = `${d.id || ""} · ${d.technique || ""}`;
+    tr.addEventListener("click",
+      () => window.open("/monitor/top9.html", "_blank", "noopener"));
+    tr.appendChild(el("td", "", detSymbol(d)));
+    tr.appendChild(el("td", "dim", d.timeframe || ""));
+    const dt = el("td"); dt.appendChild(badge(d.direction || "?"));
+    tr.appendChild(dt);
+    tr.appendChild(el("td", `num ${dirClass(d.direction)}`,
+      fmtSigned(d.score, 2)));
+    tr.appendChild(el("td", "num amb", fmtNum(d.quality, 2)));
+    const sf = semifLabel(d);
+    const st = el("td");
+    st.appendChild(el("span", `badge ${sf.cls}`, sf.text));
+    tr.appendChild(st);
+    tr.appendChild(el("td", "dim", timeAgo(d.ts)));
+    tb.appendChild(tr);
+  }
+  $("t9-meta").textContent = `${top.length} OF ${rows.length} DET`;
+  $("t9-foot").textContent = `UPD ${fmtClock(new Date())}Z`;
 }
 
 /* ------------------------------------------------------------------ WORLD */
@@ -276,12 +327,12 @@ async function loadWorld() {
     }
     $("world-esc").textContent = escTxt;
     $("world-esc").style.color = "var(--amber)";
-    $("world-foot").textContent = `${Array.isArray(j.points) ? j.points.length : 0} POINTS · ${fmtClock(new Date())}Z`;
+    $("world-foot").textContent = `${Array.isArray(j.points) ? j.points.length : 0} POINTS · UPD ${fmtClock(new Date())}Z`;
   } catch (e) {
     clear(tb);
     $("world-empty").classList.remove("hidden");
-    $("world-empty").textContent = "OFFLINE — /api/events unavailable";
-    $("world-foot").textContent = "feed down";
+    $("world-empty").textContent = "OFFLINE — world feed unavailable";
+    $("world-foot").textContent = "FEED DOWN";
   }
 }
 
@@ -346,6 +397,8 @@ function renderPaper() {
   $("pp-open").textContent = String(open);
   $("pp-trades").textContent = String(state.trades.length);
   $("pp-fees").textContent = fmtNum(fees, 2);
+  const ppEmpty = $("pp-empty");
+  if (ppEmpty) ppEmpty.classList.toggle("hidden", trades.length > 0);
   $("paper-meta").textContent = trades.length ? `LAST EXIT ${timeAgo(trades[trades.length - 1].exit_time)}` : "";
 }
 
@@ -370,7 +423,7 @@ function renderQueueChips(qs) {
     chip.appendChild(v);
     box.appendChild(chip);
   }
-  if (!qs.length) box.appendChild(el("span", "micro dim", "QUEUE VIEW EMPTY"));
+  if (!qs.length) box.appendChild(el("span", "micro dim", "NO QUEUE DATA YET"));
 }
 
 function renderSysCounts() {

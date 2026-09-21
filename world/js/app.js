@@ -13,6 +13,7 @@ const S = {
   countryShare: {},          // iso3 -> % conflict coverage
   countryPts: {},            // iso3 -> menzioni conflitto (CAMEO export)
   countryEsc: {},            // iso3 -> menzioni escalation (proteste/coercion)
+  prevEventTotals: null,     // iso3 -> totale menzioni all'ultimo ingest eventi
   toneSeries: [],
   dataMode: "boot",
 };
@@ -81,13 +82,13 @@ function initGlobe() {
   const g = Globe()(el)
     .width(el.clientWidth).height(el.clientHeight)
     .backgroundColor("rgba(0,0,0,0)")
-    .globeImageUrl("https://unpkg.com/three-globe@2.41.12/example/img/earth-night.jpg")
+    .globeImageUrl("img/earth-night.jpg")
     .showAtmosphere(true).atmosphereColor("#3a4a6b").atmosphereAltitude(0.16);
 
   g.polygonsData(S.geojson.features)
     .polygonCapColor((f) => capColor(f))
-    .polygonSideColor(() => "rgba(20,20,28,0.9)")
-    .polygonStrokeColor(() => "#3a3a46")
+    .polygonSideColor(() => "rgba(15,17,24,0.65)")
+    .polygonStrokeColor(() => "rgba(140,150,170,0.35)")
     .polygonAltitude((f) => (S.countryState[f.id]?.level.key === "crit" ? 0.028 : 0.008))
     .polygonsTransitionDuration(300)
     .onPolygonClick((f) => f && selectCountry(f.id))
@@ -116,21 +117,33 @@ function initGlobe() {
   new ResizeObserver(() => { const b = el.getBoundingClientRect(); g.width(b.width).height(b.height); }).observe(el);
 }
 
+// hex "#rrggbb" -> "rgba(r,g,b,a)" — i cap semi-trasparenti lasciano
+// vedere la texture terrestre sotto i paesi (globo leggibile)
+const rgba = (hex, a) => {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+};
+
 function capColor(f) {
   const st = S.countryState[f.id];
-  if (!st) return "#101018";
+  if (!st) return "rgba(16,16,24,0.5)";
   if (st.flashUntil > performance.now()) {
     const t = (st.flashUntil - performance.now()) / 1000;
-    return Math.floor(t * 6) % 2 === 0 ? st.flashColor : "#1a1a22";
+    return Math.floor(t * 6) % 2 === 0 ? rgba(st.flashColor, 0.92) : "rgba(26,26,34,0.55)";
   }
-  return st.level.color;
+  return rgba(st.level.color, 0.8);
 }
 
+let flashActive = false;
 function flashTick() {
   const now = performance.now();
   let active = false;
   for (const st of Object.values(S.countryState)) if (st.flashUntil > now) { active = true; break; }
-  if (active) S.globe.polygonCapColor(capColor);
+  // re-apply anche all'ultimo tick: globe.gl valuta gli accessor solo quando
+  // vengono re-impostati — senza, i poligoni restano congelati sul colore
+  // del flash fino al prossimo refresh
+  if (active || flashActive) S.globe.polygonCapColor(capColor);
+  flashActive = active;
 }
 
 function hoverCountry(f) {
@@ -228,12 +241,13 @@ async function refresh() {
 
 async function _refresh() {
   setFeedChip("warn", "UPDATING");
-  let ok = false;
+  let ok = false;      // any data at all (live or cache)
+  let liveOk = false;  // at least one branch returned fresh (non-cached) data
 
   // 1) eventi conflitto CAMEO via server.py /api/events (export GDELT 15-min)
   const ev = await Gdelt.events();
   if (ev && (ev.points?.length || ev.countries)) {
-    ok = true;
+    ok = true; liveOk = true;   // server-side fetch, always fresh
     ingestEvents(ev);
   }
 
@@ -241,6 +255,7 @@ async function _refresh() {
   const feed = await Gdelt.artlist(WW_CONFIG.Q_MAJOR, { maxrecords: 250, timespan: "24h", sort: "hybridrel" });
   if (feed && feed.articles && !feed.error) {
     ok = true;
+    if (!feed.cached) liveOk = true;
     ingestArticles(feed.articles);
   }
 
@@ -248,14 +263,21 @@ async function _refresh() {
   const tsc = await Gdelt.timelineSourceCountry(WW_CONFIG.Q_CONFLICT, { timespan: "7d" });
   if (tsc && !tsc.error) {
     const share = parseTimelineSourceCountry(tsc);
-    if (share) { applyShare(share); applyShareFallbackPoints(); ok = true; }
+    if (share) {
+      applyShare(share); applyShareFallbackPoints();
+      ok = true;
+      if (!tsc.cached) liveOk = true;
+    }
   }
 
   // 4) tono globale conflitto
   const tt = await Gdelt.timelineTone(WW_CONFIG.Q_CONFLICT, { timespan: "7d" });
   if (tt && !tt.error) {
     const ser = parseTimeline(tt);
-    if (ser && ser.length) { S.toneSeries = ser; ok = true; }
+    if (ser && ser.length) {
+      S.toneSeries = ser; ok = true;
+      if (!tt.cached) liveOk = true;
+    }
   }
 
   // 5) se paese selezionato, refresh headline nazionali
@@ -268,8 +290,12 @@ async function _refresh() {
   S.globe.pointsData(S.conflictPoints);
   renderAll();
   if (ok) {
-    S.live = true; S.dataMode = "live"; S.lastUpdate = new Date();
-    setFeedChip("on", "LIVE");
+    S.live = true;
+    S.dataMode = liveOk ? "live" : "snapshot";
+    S.lastUpdate = new Date();
+    // truthful chip: only claim LIVE when something actually came down the
+    // wire this cycle — cache hits are CACHED, not live
+    setFeedChip(liveOk ? "on" : "warn", liveOk ? "LIVE" : "CACHED");
   } else {
     setFeedChip("err", S.dataMode === "snapshot" ? "CACHED" : "OFFLINE");
   }
@@ -298,7 +324,20 @@ function ingestEvents(ev) {
   for (const [iso3, v] of Object.entries(ev.escalation || {}))
     if (S.countryState[iso3]) S.countryEsc[iso3] = v;
   const hit = new Set([...Object.keys(S.countryPts), ...Object.keys(S.countryEsc)]);
-  for (const iso3 of hit) triggerFlash(iso3, "#ff2d2d", 12, null);
+  // flash SOLO su escalation reale: paesi le cui menzioni crescono rispetto
+  // all'ingest precedente (max 6) — altrimenti ogni refresh fa lampeggiare
+  // mezzo mondo e la mappa resta rossa in permanenza
+  const totals = {};
+  for (const iso3 of hit) totals[iso3] = (S.countryPts[iso3] || 0) + (S.countryEsc[iso3] || 0);
+  const prev = S.prevEventTotals;
+  if (prev) {
+    const grew = [...hit]
+      .filter((i) => totals[i] > (prev[i] || 0))
+      .sort((a, b) => totals[b] - totals[a])
+      .slice(0, 6);
+    for (const iso3 of grew) triggerFlash(iso3, "#ff2d2d", 12, null);
+  }
+  S.prevEventTotals = totals;
 }
 
 /* fallback senza server: punti pseudo dai centroidi, scalati per share */

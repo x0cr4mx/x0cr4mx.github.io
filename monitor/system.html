@@ -5,11 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>K1 ▸ SYSTEM</title>
 <link rel="stylesheet" href="/assets/terminal.css">
+<link rel="stylesheet" href="/assets/tour.css">
 <script src="/config.js"></script>
 </head>
 <body>
 <header class="topbar">
   <span class="brand">K1 ▸ SYSTEM</span>
+  <span class="sub">PAPER ONLY</span>
   <span id="conn-dot" class="conn-dot"></span>
   <span id="conn-label" class="micro conn-label">CONN</span>
   <span class="flex-sp"></span>
@@ -25,8 +27,8 @@
     <div class="scroll">
       <table class="t" id="jobs">
         <thead><tr>
-          <th>CREATED UTC</th><th>ID</th><th>ROLE</th><th>WL</th><th>P</th>
-          <th>STATE</th><th class="num">ATT</th><th>WORKER</th><th>ERROR</th>
+          <th>CREATED UTC</th><th>ID</th><th>ROLE</th><th title="WL — workload name: which kind of task this job belongs to">WL</th><th title="P — priority: lower runs first">P</th>
+          <th>STATE</th><th class="num" title="ATT — attempts used / max attempts before dead-letter">ATT</th><th>WORKER</th><th>ERROR</th>
         </tr></thead>
         <tbody></tbody>
       </table>
@@ -40,7 +42,7 @@
       </table>
       <div class="panel-h" style="border-top:1px solid var(--border)"><span class="panel-t">CONTROL FAILURES</span></div>
       <table class="t" id="cfail">
-        <thead><tr><th>TIME UTC</th><th>STAGE</th><th>TARGET</th><th class="num">ATT</th><th>CODE</th><th>BLOCKED</th></tr></thead>
+        <thead><tr><th>TIME UTC</th><th>STAGE</th><th>TARGET</th><th class="num" title="ATT — which attempt failed">ATT</th><th>CODE</th><th>BLOCKED</th></tr></thead>
         <tbody></tbody>
       </table>
       <div class="panel-h" style="border-top:1px solid var(--border)"><span class="panel-t">RECORD COUNTS</span><span class="flex-sp"></span><span class="micro" id="rc-tot"></span></div>
@@ -52,5 +54,6 @@
   </div>
 </main>
 <script type="module" src="/assets/monitor-system.js"></script>
+<script type="module" src="/assets/tour.js"></script>
 </body>
 </html>

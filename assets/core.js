@@ -5,9 +5,15 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 const CDN_OK = typeof createClient === "function";
 
 /* ------------------------------------------------------------------ client */
+// One GoTrueClient per browser context: repeated createClient() calls spawn
+// parallel auth managers fighting over the same storage key (and supabase-js
+// warns about it). Cache the first instance and hand it to every caller.
+let _sbSingleton = null;
 export function createSb() {
+  if (_sbSingleton) return _sbSingleton;
   const env = window.K1_ENV || {};
-  return createClient(env.SUPABASE_URL || "", env.SUPABASE_KEY || "");
+  _sbSingleton = createClient(env.SUPABASE_URL || "", env.SUPABASE_KEY || "");
+  return _sbSingleton;
 }
 
 /* ------------------------------------------------------- edge functions */
@@ -184,6 +190,9 @@ function _connUpdate() {
   }
 }
 function _trackConn(ch, status) {
+  // a real channel report supersedes the init "manual" placeholder so the
+  // indicator can reach DOWN when every channel dies (e.g. network offline)
+  _conn.delete("manual");
   _conn.set(ch, status);
   _connUpdate();
 }
@@ -231,25 +240,63 @@ function _loginOverlay(sb) {
     const pass = ov.querySelector("#k1-li-pass");
     const err = ov.querySelector("#k1-li-err");
     const ok = ov.querySelector("#k1-li-ok");
+    const go = ov.querySelector("#k1-li-go");
+    const reg = ov.querySelector("#k1-li-reg");
     const fail = m => { err.textContent = m || "AUTH FAILED"; ok.textContent = ""; };
     const done = session => { ov.remove(); resolve(session); };
+    const busy = on => {
+      go.disabled = reg.disabled = on;
+      go.textContent = on ? "… CHECKING" : "▸ AUTHENTICATE";
+    };
+    const humanize = m => {
+      const s = String(m || "");
+      if (/invalid login credentials/i.test(s))
+        return "EMAIL OR PASSWORD INCORRECT — check credentials, or use FIRST-TIME REGISTRATION";
+      if (/missing email|email.*required|phone/i.test(s) && /missing|required/i.test(s))
+        return "EMAIL REQUIRED — type your email address";
+      if (/unable to validate email|invalid.*email/i.test(s))
+        return "EMAIL ADDRESS NOT VALID — check for typos";
+      if (/password.*(at least|characters|short|weak)/i.test(s))
+        return "PASSWORD TOO SHORT — use at least 6 characters";
+      if (/already.*(registered|been registered|in use)/i.test(s))
+        return "EMAIL ALREADY REGISTERED — sign in instead";
+      if (/failed to fetch|network|fetch/i.test(s))
+        return "NETWORK ERROR — check your connection and retry";
+      return s;
+    };
+    const checkFields = () => {
+      if (!email.value.trim() || !pass.value) return "ENTER EMAIL AND PASSWORD";
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()))
+        return "EMAIL ADDRESS NOT VALID — check for typos";
+      return null;
+    };
     const submit = async () => {
       err.textContent = ""; ok.textContent = "";
-      const { data, error } = await sb.auth.signInWithPassword({
-        email: email.value.trim(), password: pass.value,
-      });
-      if (error) return fail(error.message);
-      done(data.session);
+      const pre = checkFields();
+      if (pre) return fail(pre);
+      busy(true);
+      try {
+        const { data, error } = await sb.auth.signInWithPassword({
+          email: email.value.trim(), password: pass.value,
+        });
+        if (error) return fail(humanize(error.message));
+        done(data.session);
+      } finally { busy(false); }
     };
-    ov.querySelector("#k1-li-go").addEventListener("click", submit);
-    ov.querySelector("#k1-li-reg").addEventListener("click", async () => {
+    go.addEventListener("click", submit);
+    reg.addEventListener("click", async () => {
       err.textContent = ""; ok.textContent = "";
-      const { data, error } = await sb.auth.signUp({
-        email: email.value.trim(), password: pass.value,
-      });
-      if (error) return fail(error.message);
-      if (data.session) return done(data.session);
-      ok.textContent = "REGISTERED — CONFIRM EMAIL THEN SIGN IN";
+      const pre = checkFields();
+      if (pre) return fail(pre);
+      busy(true);
+      try {
+        const { data, error } = await sb.auth.signUp({
+          email: email.value.trim(), password: pass.value,
+        });
+        if (error) return fail(humanize(error.message));
+        if (data.session) return done(data.session);
+        ok.textContent = "REGISTERED — CONFIRM EMAIL THEN SIGN IN";
+      } finally { busy(false); }
     });
     ov.addEventListener("keydown", e => { if (e.key === "Enter") submit(); });
     setTimeout(() => email.focus(), 30);
@@ -275,6 +322,10 @@ export async function initTerminal({ title, onAuth } = {}) {
   _showUser(session);
   sb.auth.onAuthStateChange((_e, s) => { _showUser(s); if (!s) location.reload(); });
   if (onAuth) await onAuth(sb);
+  // announce "authenticated + first render done" for the guided tour (tour.js)
+  window.__k1Authed = true;
+  window.__k1Sb = sb;
+  window.dispatchEvent(new CustomEvent("k1:authed", { detail: { sb } }));
   return sb;
 }
 

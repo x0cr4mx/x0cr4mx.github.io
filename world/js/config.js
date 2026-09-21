@@ -48,12 +48,14 @@ const WW_CONFIG = {
   TIMESPAN: "24h",
 
   // ---- query packs (sintassi DOC 2.0) ----
+  // GDELT DOC 2.0 requires every OR'ed group to be parenthesised, otherwise it
+  // answers "OR'd terms must be surrounded by ()" — hence the outer parens.
   Q_CONFLICT:
-    'theme:ARMEDCONFLICT OR theme:TERROR OR "airstrike" OR "missile strike" OR invasion OR offensive OR artillery OR dronestrike OR "drone strike" OR battlefield',
+    '(theme:ARMEDCONFLICT OR theme:TERROR OR "airstrike" OR "missile strike" OR invasion OR offensive OR artillery OR dronestrike OR "drone strike" OR battlefield)',
   Q_MAJOR:
-    'theme:LEADER OR theme:ELECTION OR theme:SANCTIONS OR theme:CEASEFIRE OR president OR "prime minister" OR summit OR "trade deal" OR treaty OR protest OR referendum',
+    '(theme:LEADER OR theme:ELECTION OR theme:SANCTIONS OR theme:CEASEFIRE OR president OR "prime minister" OR summit OR "trade deal" OR treaty OR protest OR referendum)',
   Q_WAR_TERMS:
-    'war OR airstrike OR missile OR invasion OR offensive OR troops OR artillery OR drone OR killed OR ceasefire OR battlefield OR bombing OR shelling',
+    '(war OR airstrike OR missile OR invasion OR offensive OR troops OR artillery OR drone OR killed OR ceasefire OR battlefield OR bombing OR shelling)',
 
   // keyword bag per classificazione lato client
   CLS: {

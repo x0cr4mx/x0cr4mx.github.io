@@ -55,14 +55,21 @@ async function loadQueue(sb) {
     const k = `${r.state}|${r.workload || ""}`;
     byKey[k] = (byKey[k] || 0) + (Number(r.n) || 0);
   }
-  if (!qs.length) { bar.appendChild(el("span", "micro dim", "k1_queue_stats EMPTY/UNAVAILABLE")); return; }
+  if (!qs.length) { bar.appendChild(el("span", "micro dim", "NO QUEUE DATA YET — the scheduler has not published stats")); return; }
   const tot = {};
   for (const r of qs) tot[r.state] = (tot[r.state] || 0) + (Number(r.n) || 0);
+  const stateTips = {
+    queued: "waiting to be picked up",
+    leased: "claimed by a worker, running now",
+    completed: "finished",
+    dead_letter: "failed after all retries — needs review",
+  };
   for (const s of ["queued", "leased", "completed", "dead_letter"]) {
     const chip = el("span", "chip static");
     chip.appendChild(document.createTextNode(`${s.toUpperCase()} `));
     chip.appendChild(el("b", s === "dead_letter" && tot[s] ? "down" : "cy", fmtNum(tot[s] || 0, 0)));
     chip.querySelector("b").style.fontWeight = "400";
+    chip.title = `${s} — ${stateTips[s]}`;
     bar.appendChild(chip);
   }
   bar.appendChild(el("span", "dim", "|"));

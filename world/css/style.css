@@ -124,6 +124,7 @@ body {
 .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 3px; }
 .dot.crit { background: var(--red); } .dot.high { background: var(--orange); }
 .dot.elev { background: var(--amber); } .dot.low { background: #3a5a3a; }
+.dot.calm { background: #1e2b38; border: 1px solid var(--border); }
 
 /* risk list */
 .risk-row {
@@ -245,4 +246,20 @@ canvas { width: 100%; display: block; }
 @media (max-width: 1100px) {
   #left-panel { width: 200px; } #right-panel { width: 290px; }
   .brand-sub { display: none; }
+}
+
+/* ---------- narrow viewports ---------- */
+/* Column layout: globe first (fixed share of the viewport), then the side
+   panels stacked and scrollable — nothing collapses to zero width. */
+@media (max-width: 900px) {
+  #layout { flex-direction: column; overflow-y: auto; }
+  #globe-wrap { order: -1; flex: 0 0 55vh; min-height: 320px; }
+  #left-panel  { order: 0; width: 100%; border-width: 0 0 1px; flex: 0 0 auto; max-height: 45vh; }
+  #right-panel { order: 1; width: 100%; border-width: 0; flex: 0 0 auto; min-height: 45vh; }
+}
+@media (max-width: 640px) {
+  #k1bar { height: auto; flex-wrap: wrap; row-gap: 2px; padding: 4px 12px; }
+  #topbar { height: auto; flex-wrap: wrap; padding: 6px 8px; row-gap: 4px; }
+  .topbar-mid { order: 3; flex-basis: 100%; }
+  .legend { display: none; }
 }

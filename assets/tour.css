@@ -1,0 +1,55 @@
+/* K1 TERMINAL — guided tour overlay. All rules prefixed k1tour- (no collisions
+   with terminal.css or world/css/style.css); vars carry literal fallbacks so
+   the tour also renders on /world/ which does not load terminal.css. */
+.k1tour-back { position: fixed; inset: 0; z-index: 900; background: transparent; }
+.k1tour-spot {
+  position: fixed; z-index: 901; pointer-events: none; box-sizing: border-box;
+  border: 1px solid var(--amber, #ffb000);
+  /* giant shadow = dim layer: everything outside the ring is darkened */
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, .58), 0 0 14px rgba(255, 176, 0, .35);
+}
+.k1tour-spot.free { display: none; }
+.k1tour-tip {
+  position: fixed; z-index: 902; width: 330px; max-width: calc(100vw - 16px);
+  background: var(--panel, #0a0e12); border: 1px solid var(--amber, #ffb000);
+  color: var(--text, #d7d7d7); outline: none; box-shadow: 0 6px 30px rgba(0,0,0,.8);
+  font: 12px/1.5 var(--font, var(--mono, ui-monospace, "SF Mono", Menlo, Consolas, monospace));
+}
+.k1tour-h {
+  display: flex; align-items: center; gap: 8px; padding: 6px 10px;
+  background: var(--panel2, #0d1319); border-bottom: 1px solid var(--border, #232a30);
+}
+.k1tour-step { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted, #7a8580); white-space: nowrap; }
+.k1tour-title {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--amber, #ffb000); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.k1tour-b { padding: 10px; font-size: 11px; color: var(--text, #d7d7d7); white-space: normal; }
+.k1tour-f { display: flex; gap: 6px; align-items: center; padding: 6px 10px 8px; }
+.k1tour-f .sp { flex: 1; }
+.k1tour-btn {
+  font: 9px var(--font, var(--mono, ui-monospace, Menlo, Consolas, monospace));
+  letter-spacing: .12em; text-transform: uppercase; white-space: nowrap;
+  color: var(--muted, #7a8580); background: transparent; cursor: pointer;
+  border: 1px solid var(--border, #232a30); padding: 4px 10px; border-radius: 0;
+}
+.k1tour-btn:hover, button.k1tour-help:hover { color: var(--amber, #ffb000); border-color: var(--amber, #ffb000); }
+.k1tour-btn:focus-visible, button.k1tour-help:focus-visible { outline: 1px solid var(--amber, #ffb000); outline-offset: 1px; }
+.k1tour-btn.primary { color: #000; background: var(--amber, #ffb000); border-color: var(--amber, #ffb000); }
+.k1tour-btn.primary:hover { background: #ffc833; }
+.k1tour-btn[disabled] { opacity: .5; cursor: default; }
+.k1tour-btn[disabled]:hover { color: var(--muted, #7a8580); border-color: var(--border, #232a30); }
+/* "?" restart button: .btn covers terminal pages; these rules cover /world/ */
+button.k1tour-help {
+  font: 9px var(--font, var(--mono, ui-monospace, Menlo, Consolas, monospace));
+  letter-spacing: .12em; text-transform: uppercase; white-space: nowrap;
+  color: var(--muted, #7a8580); background: transparent; cursor: pointer;
+  border: 1px solid var(--border, #232a30); padding: 3px 8px; border-radius: 0;
+}
+#k1bar button.k1tour-help { margin-left: 18px; color: var(--amber, #ffb000); letter-spacing: 1px; }
+#k1bar button.k1tour-help:hover { color: #fff; }
+@media (prefers-reduced-motion: no-preference) {
+  .k1tour-tip { animation: k1tour-in .16s ease-out; }
+  .k1tour-spot { transition: top .18s ease, left .18s ease, width .18s ease, height .18s ease; }
+}
+@keyframes k1tour-in { from { opacity: 0; transform: translateY(4px); } }

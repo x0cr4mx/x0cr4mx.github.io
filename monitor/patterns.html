@@ -5,11 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>K1 ▸ PATTERNS</title>
 <link rel="stylesheet" href="/assets/terminal.css">
+<link rel="stylesheet" href="/assets/tour.css">
 <script src="/config.js"></script>
 </head>
 <body>
 <header class="topbar">
   <span class="brand">K1 ▸ PATTERN SCANNER</span>
+  <span class="sub">PAPER ONLY</span>
   <span id="conn-dot" class="conn-dot"></span>
   <span id="conn-label" class="micro conn-label">CONN</span>
   <span class="flex-sp"></span>
@@ -22,10 +24,11 @@
 <main class="fill">
   <div class="toolbar" id="scan-bar">
     <span class="micro">SCAN ▸</span>
-    <span class="micro dim">WAITING FOR prb_latest…</span>
+    <span class="micro dim">WAITING FOR SCANNER DATA…</span>
   </div>
   <div class="setup-grid" id="grid"></div>
 </main>
 <script type="module" src="/assets/monitor-patterns.js"></script>
+<script type="module" src="/assets/tour.js"></script>
 </body>
 </html>

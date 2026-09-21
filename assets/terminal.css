@@ -156,10 +156,11 @@ a.btn { display: inline-block; line-height: 1.4; }
   padding: 1px;
   height: calc(100vh - 32px - 22px - 24px);
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: minmax(0, 1.5fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 0.62fr);
   grid-template-areas:
     "mkts mkts mkts mkts mkts scan scan scan scan dec dec dec"
-    "paper paper paper world world world sys sys sys dec dec dec";
+    "paper paper paper world world world sys sys sys dec dec dec"
+    "t9 t9 t9 t9 t9 t9 t9 t9 t9 t9 t9 t9";
 }
 #p-markets { grid-area: mkts; }
 #p-patterns { grid-area: scan; }
@@ -167,6 +168,7 @@ a.btn { display: inline-block; line-height: 1.4; }
 #p-paper { grid-area: paper; }
 #p-world { grid-area: world; }
 #p-system { grid-area: sys; }
+#p-top9 { grid-area: t9; }
 
 @media (max-width: 1100px) {
   .grid {
@@ -501,6 +503,34 @@ select.inp { text-transform: uppercase; font-size: 10px; letter-spacing: .06em; 
 .why div::before { content: "▸ "; color: var(--dim); }
 .pats { display: flex; flex-wrap: wrap; gap: 3px; }
 
+/* top9 detections (monitor/top9 + home panel) */
+.t9-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #131722;
+}
+.t9-note { font-size: 10px; color: var(--text); line-height: 1.5; }
+.t9-foot {
+  display: flex; gap: 10px; align-items: center;
+  border-top: 1px solid var(--border);
+  padding: 4px 8px;
+  background: var(--panel2);
+  flex: 0 0 auto;
+}
+.disclaimer {
+  flex: 0 0 auto;
+  border-top: 1px solid var(--amber);
+  background: var(--panel2);
+  color: var(--amber);
+  padding: 5px 10px;
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
 /* utility */
 .row { display: flex; gap: 8px; align-items: center; }
 .grow { flex: 1; min-width: 0; }
@@ -509,3 +539,20 @@ select.inp { text-transform: uppercase; font-size: 10px; letter-spacing: .06em; 
 .pad { padding: 6px 8px; }
 .scroll { overflow: auto; }
 .hidden { display: none !important; }
+
+/* ---------- narrow viewports ---------- */
+/* Stack the two-column monitor layouts before they become unreadably thin. */
+@media (max-width: 900px) {
+  .two-col { grid-template-columns: 1fr; grid-auto-rows: minmax(220px, auto); }
+}
+/* Wrap the topbar instead of letting SIGN OUT / clock slide off-screen. */
+@media (max-width: 700px) {
+  .topbar {
+    height: auto; min-height: 32px;
+    flex-wrap: wrap; gap: 6px 10px;
+    padding: 5px 8px;
+  }
+  .fill { height: auto; min-height: calc(100vh - 60px); }
+  .statusbar { height: auto; flex-wrap: wrap; row-gap: 2px; }
+  .tape { overflow-x: auto; }
+}
