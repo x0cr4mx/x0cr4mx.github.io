@@ -20,8 +20,13 @@
   <a class="btn" href="/">← TERMINAL</a>
   <button id="signout" class="btn warn">SIGN OUT</button>
 </header>
-<iframe src="/world/" title="K1 World"
-  style="position:fixed;inset:32px 0 0;width:100%;height:calc(100% - 32px);border:0"></iframe>
+<iframe class="geo-frame" src="/world/" title="K1 World"></iframe>
+<style>
+  /* flex column so the frame fills whatever the (possibly wrapped) topbar
+     leaves — on narrow viewports the topbar grows past its 32px default */
+  body { display: flex; flex-direction: column; }
+  iframe.geo-frame { flex: 1; min-height: 0; width: 100%; border: 0; display: block; }
+</style>
 <script type="module" src="/assets/monitor-geo.js"></script>
 <script type="module" src="/assets/tour.js"></script>
 </body>

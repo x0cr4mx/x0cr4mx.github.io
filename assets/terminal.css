@@ -545,14 +545,19 @@ select.inp { text-transform: uppercase; font-size: 10px; letter-spacing: .06em; 
 @media (max-width: 900px) {
   .two-col { grid-template-columns: 1fr; grid-auto-rows: minmax(220px, auto); }
 }
-/* Wrap the topbar instead of letting SIGN OUT / clock slide off-screen. */
+/* Wrap the topbar instead of letting SIGN OUT / clock slide off-screen.
+   Non-essential chrome collapses (user email, tape marquee); SIGN OUT,
+   the back link, conn-dot and the ? help button stay reachable. */
 @media (max-width: 700px) {
   .topbar {
     height: auto; min-height: 32px;
     flex-wrap: wrap; gap: 6px 10px;
     padding: 5px 8px;
+    overflow: hidden;
   }
+  .topbar #user-email { display: none; }
+  /* .sub (PAPER ONLY disclaimer) stays — it's small and compliance-relevant */
   .fill { height: auto; min-height: calc(100vh - 60px); }
   .statusbar { height: auto; flex-wrap: wrap; row-gap: 2px; }
-  .tape { overflow-x: auto; }
+  .tape { display: none; }
 }

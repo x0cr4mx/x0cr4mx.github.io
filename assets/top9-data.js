@@ -10,12 +10,31 @@
 
 // Same-origin route served by k1-api behind Caddy in the private deploy.
 // Static hosts (GitHub Pages / python http.server) have no /api layer —
-// override via window.K1_ENV.DETECTIONS_API or let the circuit breaker below
-// stop the request spam after the first few 404s.
+// override via window.K1_ENV.DETECTIONS_API. A single shared probe on
+// /api/summary decides once per page whether the layer exists at all, so
+// nine cards never fan out into nine guaranteed 404s.
 const API_DETECTIONS =
   (window.K1_ENV && window.K1_ENV.DETECTIONS_API) || "/api/detections";
-let _pngFails = 0;      // consecutive PNG failures
-let _pngApiDead = false; // true once the /api layer is assumed absent
+const API_PROBE = API_DETECTIONS.replace(/\/detections\/?$/, "/summary");
+let _pngApiProbe = null;   // Promise<boolean>|null — resolved once
+
+function _apiUp(tok) {
+  if (!_pngApiProbe) {
+    // GitHub Pages is always a static host: skip the probe entirely so the
+    // console stays clean (an explicit DETECTIONS_API override re-enables it).
+    const onPages = /(^|\.)github\.io$/.test(location.hostname);
+    if (onPages && !(window.K1_ENV && window.K1_ENV.DETECTIONS_API)) {
+      _pngApiProbe = Promise.resolve(false);
+    } else {
+      _pngApiProbe = fetch(API_PROBE, { headers: { Authorization: `Bearer ${tok}` } })
+        // any answer except 404 means the /api layer is alive (401/500 still
+        // prove the route exists); 404 or a network error = static host
+        .then(r => r.status !== 404)
+        .catch(() => false);
+    }
+  }
+  return _pngApiProbe;
+}
 
 export async function loadTopDetections(sb, limit = 60) {
   const { data, error } = await sb.from("detections")
@@ -56,31 +75,25 @@ export function detSymbol(d) {
 // GET /api/detections/<id>/chart.png needs an Authorization header that
 // <img> cannot send -> fetch as blob and hand out an object URL (caller
 // revokes it). Any 401/404/network/non-image answer -> null (e.g. GitHub
-// Pages has no /api — degrade quietly). After 3 consecutive failures the
-// /api layer is assumed absent and no further requests are fired.
+// Pages has no /api — the shared probe short-circuits before any request
+// is fired, so a static host produces zero chart 404s).
 export async function fetchDetectionPng(sb, id) {
-  if (_pngApiDead) return null;
   try {
     const { data } = await sb.auth.getSession();
     const tok = data && data.session && data.session.access_token;
     if (!tok) return null;
+    if (!(await _apiUp(tok))) return null;
     const r = await fetch(
       `${API_DETECTIONS}/${encodeURIComponent(id)}/chart.png`,
       { headers: { Authorization: `Bearer ${tok}` } });
-    if (!r.ok) return _pngFail();
+    if (!r.ok) return null;
     const blob = await r.blob();
     const type = (blob && blob.type) || "";
-    if (!type.startsWith("image/")) return _pngFail();
-    _pngFails = 0;
+    if (!type.startsWith("image/")) return null;
     return URL.createObjectURL(blob);
   } catch {
-    return _pngFail();
+    return null;
   }
-}
-
-function _pngFail() {
-  if (++_pngFails >= 3) _pngApiDead = true;
-  return null;
 }
 
 // status -> SemIf chip {text, cls}. NEW rows are still queued for the local

@@ -259,7 +259,11 @@ canvas { width: 100%; display: block; }
 }
 @media (max-width: 640px) {
   #k1bar { height: auto; flex-wrap: wrap; row-gap: 2px; padding: 4px 12px; }
-  #topbar { height: auto; flex-wrap: wrap; padding: 6px 8px; row-gap: 4px; }
+  #k1bar .k1-links a { margin-left: 10px; }
+  #topbar { height: auto; flex-wrap: wrap; padding: 6px 8px; row-gap: 4px; gap: 8px; }
   .topbar-mid { order: 3; flex-basis: 100%; }
   .legend { display: none; }
+  /* nowrap spans would otherwise overflow the 375px document box */
+  #statusbar { flex-wrap: wrap; height: auto; row-gap: 2px; overflow: hidden; }
+  #statusbar .sb-right { margin-left: 0; flex-basis: 100%; }
 }
